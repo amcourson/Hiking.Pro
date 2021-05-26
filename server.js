@@ -17,7 +17,7 @@ app.use(
     require('./routes')
 )
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikerpro");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
 
 
 app.listen(PORT, () => console.log(`LISTENING AT https://localhost:${PORT}`))
