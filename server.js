@@ -2,6 +2,8 @@ let express = require('express')
 let dotenv = require('dotenv').config()
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
+
 
 
 let PORT = process.env['PORT'] || 3001
@@ -18,9 +20,9 @@ app.use(
     require('./routes')
 )
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
 
-// // Bodyparser middleware
+// Bodyparser middleware
 // app.use(
 //   bodyParser.urlencoded({
 //     extended: false
@@ -29,18 +31,24 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
 // app.use(bodyParser.json());
 
 
-//This will be for Authentication once fully deployed
+// This will be for Authentication once fully deployed
 
-// // DB Config
-// const db = require("./config/keys").mongoURI;
+// DB Config
+const db = require("./config/keys").mongoURI;
 
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log("MongoDB successfully connected"))
-//   .catch(err => console.log(err));
+mongoose
+  .connect(
+    process.env.MONGODB_URI || db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+
 
 
 app.listen(PORT, () => console.log(`LISTENING AT https://localhost:${PORT}`))

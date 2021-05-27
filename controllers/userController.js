@@ -1,8 +1,8 @@
-const db = require("../models");
+const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const keys = require("../../config/keys");
+const keys = require("../config/keys");
 // Load input validation
 const validateRegisterInput = require("../utils/validation/register");
 const validateLoginInput = require("../utils/validation/login");
@@ -15,12 +15,12 @@ module.exports = {
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        db.User.findOne({ email: req.body.email }).then(user => {
+        User.findOne({ email: req.body.email }).then(user => {
             if (user) {
                 return res.status(400).json({ email: "Email already exists" });
             } else {
                 const newUser = new User({
-                    name: req.body.name,
+                    username: req.body.username,
                     email: req.body.email,
                     password: req.body.password,
                     location: req.body.location
@@ -49,7 +49,7 @@ module.exports = {
         const email = req.body.email;
         const password = req.body.password;
         // Find user by email
-        db.User.findOne({ email }).then(user => {
+        User.findOne({ email }).then(user => {
             // Check if user exists
             if (!user) {
                 return res.status(404).json({ emailnotfound: "Email or Password incorrect" });

@@ -6,7 +6,7 @@ router
   .post(userController.create);
 
 router
-  .route("login")
+  .route("/login")
   .post(userController.login)
 
 router
