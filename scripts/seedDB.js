@@ -9,22 +9,22 @@ const userSeed = [
   {
     username: "TheRock",
     email: "rock@therock.com",
-    password:
-      "password123",
+    password: "password123",
+    location: "Dallas",
     points: 40
   },
   {
     username: "SteveBuscemi",
     email: "steve@buscemi.com",
-    password:
-      "password123",
+    password:"password123",
+    location:"Chicago",
     points: 0
   },
   {
     username: "Yoda",
     email: "yoda@theforce.com",
-    password:
-      "123password",
+    password: "123password",
+    location: "Austin",
     points: 20
   }
 ];
