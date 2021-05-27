@@ -1,6 +1,7 @@
 let express = require('express')
 let dotenv = require('dotenv').config()
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 
 let PORT = process.env['PORT'] || 3001
@@ -18,6 +19,28 @@ app.use(
 )
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
+
+// // Bodyparser middleware
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: false
+//   })
+// );
+// app.use(bodyParser.json());
+
+
+//This will be for Authentication once fully deployed
+
+// // DB Config
+// const db = require("./config/keys").mongoURI;
+
+// mongoose
+//   .connect(
+//     db,
+//     { useNewUrlParser: true }
+//   )
+//   .then(() => console.log("MongoDB successfully connected"))
+//   .catch(err => console.log(err));
 
 
 app.listen(PORT, () => console.log(`LISTENING AT https://localhost:${PORT}`))
