@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//User Schema contains Username, email, password, bio, avatar, and total points
+//location schema is going to contain every bit of information for the hike.
 const locationSchema = new Schema({
-    name: {type: String}, 
-    difficulty: {type: String}, 
-    distance: {type: String}, 
-    descent: {type: String}, 
-    climb: {type: String}, 
-    area: {type: String}, 
-    latitude: {type: String}, 
-    longitude: {type: String}, 
-    city: {type: String}, 
-    region: {type: String}, 
-    country:  {type: String}
+    name: {type: String, default: null}, 
+    difficulty: {type: String, default: null}, 
+    distance: {type: String, default: null}, 
+    descent: {type: String, default: null}, 
+    climb: {type: String, default: null}, 
+    area: {type: String, default: null}, 
+    latitude: {type: String, default: null}, 
+    longitude: {type: String, default: null}, 
+    city: {type: String, default: null}, 
+    region: {type: String, default: null}, 
+    country:  {type: String, default: "US"}
 });
 
 const Location = mongoose.model("locations", locationSchema);
