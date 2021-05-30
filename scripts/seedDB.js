@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const trails = require("./trailscopy.json");
+const trails = require("./trailstest.json");
 
 // This file empties the Posts collection and inserts the books below
 
