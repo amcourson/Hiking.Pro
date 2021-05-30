@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const trails = require("./trails.json");
+const trails = require("./trailscopy.json");
 
 // This file empties the Posts collection and inserts the books below
 
@@ -17,8 +17,8 @@ const userSeed = [
   {
     username: "SteveBuscemi",
     email: "steve@buscemi.com",
-    password:"password123",
-    location:"Chicago",
+    password: "password123",
+    location: "Chicago",
     points: 0
   },
   {
@@ -30,26 +30,16 @@ const userSeed = [
   }
 ];
 
-const locationSeed = JSON.parse(trails)
+const locationSeed = trails
 
-db.User.remove({})
-  .then(() => db.User.collection.insertMany(userSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
 
-  db.Location.remove({})
-  .then(() => db.Location.collection.insertMany(locationSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+db.User.remove({}) && db.Location.remove({})
+  .then(() => db.User.collection.insertMany(userSeed)) && db.Location.collection.insertMany(locationSeed)
+    .then(data => {
+      console.log(data.result.n + " records inserted!");
+      process.exit(0);
+    })
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
