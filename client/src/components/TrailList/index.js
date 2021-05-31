@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
 import { GET_LOCATIONS, CREATE_LOCATION, LOADING } from "../../utils/actions";
 import API from "../../utils/API";
+import { ListItem, List } from "../List";
 
 function LocationList() {
   const [state, dispatch] = useStoreContext();
