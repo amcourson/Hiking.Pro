@@ -1,0 +1,8 @@
+export const GET_LOCATIONS = "GET_LOCATIONS";
+export const UPDATE_LOCATIONS = "UPDATE_LOCATIONS";
+export const CREATE_LOCATION = "CREATE_LOCATION";
+
+
+export const REGISTER_USER = "REGISTER_USER";
+export const GET_USER = "GET_USER";
+
