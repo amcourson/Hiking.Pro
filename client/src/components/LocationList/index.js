@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
-import { GET_LOCATIONS, CREATE_LOCATION, LOADING } from "../../utils/actions";
+import { GET_LOCATIONS, LOADING } from "../../utils/actions";
 import API from "../../utils/API";
 import { ListItem, List } from "../List";
 
@@ -13,6 +13,7 @@ function LocationList() {
     dispatch({ type: LOADING });
     API.getLocations()
       .then(results => {
+        console.log(results)
         dispatch({
           type: GET_LOCATIONS,
           locations: results.data
@@ -35,7 +36,7 @@ function LocationList() {
             <ListItem key={location._id}>
               <Link to={"/locations/" + location._id}>
                 <strong>
-                  {location.title} by {location.author}
+                  {location.name} in {location.city}
                 </strong>
               </Link>
             </ListItem>

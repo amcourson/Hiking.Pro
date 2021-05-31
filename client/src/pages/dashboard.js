@@ -1,7 +1,12 @@
-import React from 'react'
+import React from "react";
+import LocationList from "../components/LocationList";
 
 const Dashboard = () => {
-    const[state, dispatch] =use
+    return (
+
+        <LocationList />
+
+    );
 };
 
 export default Dashboard;
