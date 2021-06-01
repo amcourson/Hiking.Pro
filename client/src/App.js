@@ -1,33 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Dashboard from "./pages/dashboard";
+import LocationDetail from "./pages/LocationDetail";
+import { StoreProvider } from "./utils/GlobalState";
+
+
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path='/'>
-          <div className="App">
-            <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <p>
-                Edit <code>src/App.js</code> and save to reload.
-              </p>
-              <a
-                className="App-link"
-                href="https://reactjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn React
-              </a>
-            </header>
-          </div>
-        </Route>
-        <Route exact path='/supersecretroutethisrouteissoooosecretthatyouwouldneverfinditbylookingelephantdidyouseehowelephantisinarandomplacethatmakesnosensethatmakesthisrouteevenhardertofind'>
-          <h1>SECRET</h1>
-        </Route>
-      </Switch>
+      <div>
+        <StoreProvider>
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/locations/:id" component={LocationDetail} />
+          </Switch>
+        </StoreProvider>
+      </div>
     </Router>
   );
 }
