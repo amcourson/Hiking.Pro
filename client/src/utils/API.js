@@ -23,11 +23,11 @@ export default {
   },
   //Gets the Current users data
   getUser: function(id) {
-    return axios.get("/api/users"+id)
+    return axios.get("/api/users/"+id)
   },
   //Updates the users data
   updateUser: function(id) {
-    return axios.put("/api/users"+id)
+    return axios.put("/api/users/"+id)
   }
 
 };
