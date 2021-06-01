@@ -11,7 +11,6 @@ const LocationDetail = props => {
         dispatch({ type: LOADING });
         API.getLocation(props.match.params.id)
             .then(results => {
-                console.log(results.data)
                 dispatch({
                     type: SET_CURRENT_LOCATION,
                     location: results.data

@@ -13,7 +13,6 @@ function LocationList() {
     dispatch({ type: LOADING });
     API.getLocations()
       .then(results => {
-        console.log(results)
         dispatch({
           type: GET_LOCATIONS,
           locations: results.data
