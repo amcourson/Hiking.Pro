@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   //Get Single location
   getLocation: function(id) {
-    return axios.get("/api/locations" + id);
+    return axios.get("/api/locations/" + id);
   },
   //Get all Locations
   getLocations: function() {

@@ -6,7 +6,6 @@ import API from "../utils/API";
 
 const LocationDetail = props => {
     const [state, dispatch] = useStoreContext();
-    console.log(props.match.params.id)
 
     const getLocation = () => {
         dispatch({ type: LOADING });
