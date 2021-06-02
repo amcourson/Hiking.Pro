@@ -17,7 +17,7 @@ module.exports = {
         }
         User.findOne({ email: req.body.email }).then(user => {
             if (user) {
-                return res.status(400).json({ email: "Email already exists" });
+                return res.status(400).json({ message: "Email already exists" });
             } else {
                 const newUser = new User({
                     username: req.body.username,
@@ -44,7 +44,7 @@ module.exports = {
         const { errors, isValid } = validateLoginInput(req.body);
         // Check validation
         if (!isValid) {
-            return res.status(400).json(errors);
+            return res.status(400).json({message: 'invalid password'});
         }
         const email = req.body.email;
         const password = req.body.password;
@@ -52,7 +52,7 @@ module.exports = {
         User.findOne({ email }).then(user => {
             // Check if user exists
             if (!user) {
-                return res.status(404).json({ emailnotfound: "Email or Password incorrect" });
+                return res.status(404).json({ message: 'not found' });
             }
             // Check password
             bcrypt.compare(password, user.password).then(isMatch => {
@@ -71,8 +71,7 @@ module.exports = {
                             expiresIn: 31556926 // 1 year in seconds
                         },
                         (err, token) => {
-                            res.json({
-                                success: true,
+                            res.status(200).json({
                                 token: "Bearer " + token
                             });
                         }

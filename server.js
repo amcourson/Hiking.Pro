@@ -7,7 +7,7 @@ let PORT = process.env['PORT'] || 3001
 
 // Serves static assets on Heroku
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
+    app.use(express.static("./client/build"));
   }
 
 let app = express()
