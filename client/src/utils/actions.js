@@ -1,8 +1,5 @@
 export const GET_LOCATIONS = "GET_LOCATIONS";
-<<<<<<< HEAD
 export const SET_CURRENT_LOCATION = "SET_CURRENT_LOCATION";
-=======
->>>>>>> 623d40abe218c68874223be3a8368123a909255f
 export const CREATE_LOCATION = "CREATE_LOCATION";
 export const LOADING = "LOADING";
 
