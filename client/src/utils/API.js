@@ -7,11 +7,11 @@ export default {
   },
   //Get all Locations
   getLocations: function() {
-    return axios.get("/api/locations");
+    return axios.get("/api/locations/");
   },
   //Saves a new location to 
   saveLocation: function() {
-    return axios.post("/api/locations");
+    return axios.post("/api/locations/");
   },
   //Registers a new user
   registerUser: function() {
