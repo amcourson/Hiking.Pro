@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
     GET_LOCATIONS,
+    SET_CURRENT_LOCATION,
     CREATE_LOCATION,
     CURRENT_USER,
     LOADING
@@ -11,6 +12,14 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
+
+        case SET_CURRENT_LOCATION:
+            return {
+              ...state,
+              currentLocation: action.location,
+              loading: false
+            };
+
         case CURRENT_USER:
             return {
                 ...state,
@@ -47,6 +56,19 @@ const reducer = (state, action) => {
 const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         locations: [],
+        currentLocation: {
+            _id: 0,
+            name: "",
+            difficulty: "",
+            distance: "",
+            descent: "",
+            climb: "",
+            area: "",
+            latitude: "",
+            longitude: "",
+            city: "",
+            region: ""
+        },
         currentUser: {
             _id: 0,
             username: "",
