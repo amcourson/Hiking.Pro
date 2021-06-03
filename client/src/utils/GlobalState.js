@@ -2,6 +2,7 @@ import React, { createContext, useReducer, useContext } from "react";
 import {
     GET_LOCATIONS,
     SET_CURRENT_LOCATION,
+    SET_SEARCH_LOCATION,
     CREATE_LOCATION,
     CURRENT_USER,
     LOADING
@@ -12,6 +13,13 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
+        
+        case SET_SEARCH_LOCATION:
+            return {
+              ...state,
+              searchLocation: action.location,
+              loading: false
+            };
 
         case SET_CURRENT_LOCATION:
             return {
@@ -56,6 +64,9 @@ const reducer = (state, action) => {
 const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         locations: [],
+        searchLocation: {
+            region: ""
+        },
         currentLocation: {
             _id: 0,
             name: "",
