@@ -17,7 +17,7 @@ const reducer = (state, action) => {
         case SET_SEARCH_LOCATION:
             return {
               ...state,
-              searchLocation: action.location,
+              searchLocation: action.region,
               loading: false
             };
 
