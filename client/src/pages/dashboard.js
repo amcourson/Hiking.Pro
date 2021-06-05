@@ -10,7 +10,6 @@ const Dashboard = () => {
         <div>
         <CreateLocationForm />
         <LocationList />
-        
         </div>
     );
 };

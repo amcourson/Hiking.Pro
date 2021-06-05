@@ -28,7 +28,7 @@ function CreateLocationForm() {
       type: SET_SEARCH_LOCATION,
       region: { "region": stateAbbreviation },
     })
-
+    //Going to reset the search value
     locationRef.current.value = '';
   };
 
@@ -36,6 +36,7 @@ function CreateLocationForm() {
     <div>
       <h1>Filter your Results</h1>
       <form className="form-group mt-5 mb-5" onSubmit={handleSubmit}>
+        {/* Dropdown menu for states */}
         <label for="location">Choose a State:</label>
         <select
           id="location"
