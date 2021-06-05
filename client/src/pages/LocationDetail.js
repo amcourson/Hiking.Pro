@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
 import { SET_CURRENT_LOCATION, LOADING } from "../utils/actions";
 import API from "../utils/API";
+import Map from "../components/maps";
 
 const LocationDetail = props => {
     const [state, dispatch] = useStoreContext();
@@ -43,6 +44,11 @@ const LocationDetail = props => {
         ) : (
             <div>loading...</div>
         )}
+        <Map 
+       name = {state.currentLocation.name}
+       lat = {state.currentLocation.latitude}
+       lng = {state.currentLocation.longitude}
+        />
         </div>
     );
 }
