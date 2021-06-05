@@ -74,6 +74,9 @@ module.exports = {
             });
         });
     },
+    getData: (req, res) => {
+        
+    },
     findById: function (req, res) {
         User.findById(req.params.id)
             .then(dbModel => res.json(dbModel))
@@ -83,5 +86,5 @@ module.exports = {
         User.findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    }
+    },
 };
