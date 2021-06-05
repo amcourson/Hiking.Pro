@@ -41,12 +41,12 @@ export class MapContainer extends Component {
                 style={mapStyles}
                 initialCenter={
                     {
-                        lat: -1.2884,
-                        lng: 36.8233
+                        lat:this.props.lat,
+                        lng:this.props.lng
                     }
                 }
             >
-                {filteredTrails.map(trail  => {
+                {/* {filteredTrails.map(trail  => {
                     return (
                         <Marker
                         title={'The marker`s title will appear as a tooltip.'}
@@ -61,7 +61,12 @@ export class MapContainer extends Component {
                 <Marker
                     name={'Dolores park'}
                     position={{ lat: 37.759703, lng: -122.428093 }} />
+                <Marker /> */}
+                <Marker
+                    name={this.props.name}
+                    position={{ lat:this.props.lat, lng:this.props.lng }} />
                 <Marker />
+
                 <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
