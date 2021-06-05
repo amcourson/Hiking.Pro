@@ -21,13 +21,15 @@ function CreateLocationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(locationRef.current.value)
+    //going to turn the abbreviation to uppercase
+    const stateAbbreviation = locationRef.current.value.toUpperCase()
+    //This is going to push the location to the global state currently should be in state abbreviation format
     dispatch({
         type: SET_SEARCH_LOCATION,
-        region: {"region": locationRef.current.value},
+        region: {"region": stateAbbreviation},
       })
 
-    // locationRef.current.value = '';
+    locationRef.current.value = '';
   };
 
   return (
