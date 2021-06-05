@@ -11,19 +11,21 @@ function LocationList() {
 
   const getLocations = () => {
     dispatch({ type: LOADING });
-    API.getLocations()
-      .then(results => {
-        dispatch({
-          type: GET_LOCATIONS,
-          locations: results.data
-        });
-      })
+    console.log(state.searchLocation.region)
+      API.getLocationByState(state.searchLocation.region)
+        .then(results => {
+          dispatch({
+            type: GET_LOCATIONS,
+            locations: results.data
+          });
+        })
       .catch(err => console.log(err));
   };
 
   useEffect(() => {
     getLocations();
-  }, []);
+  }, [state.searchLocation.region]);
+
 
   return (
     <div>

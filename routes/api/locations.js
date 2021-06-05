@@ -7,6 +7,10 @@ router
   .get(locationController.findAll)
   .post(locationController.create);
 
+  router
+  .route("/search/:region")
+  .get(locationController.findByState)
+
 // Matches with "/api/location/:id"
 router
   .route("/:id")
