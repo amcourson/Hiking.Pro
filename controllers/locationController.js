@@ -8,6 +8,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  findByState: function(req, res) {
+    db.Location.find({region: req.params.region})
+      .sort({ name: -1 })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findById: function(req, res) {
     db.Location.findById(req.params.id)
       .then(dbModel => res.json(dbModel))

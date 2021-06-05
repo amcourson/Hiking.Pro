@@ -12,6 +12,8 @@ const userSeed = [
     email: "rock@therock.com",
     password: "password123",
     location: "Dallas",
+    favorites: [],
+    completed: ["60b820f196ae0e2738634c3c"],
     points: 40
   },
   {
@@ -19,6 +21,8 @@ const userSeed = [
     email: "steve@buscemi.com",
     password: "password123",
     location: "Chicago",
+    favorites: ["60b820f196ae0e2738634c3c","60b820f196ae0e2738634c3d"],
+    completed: ["60b820f196ae0e2738634c3e"],
     points: 0
   },
   {
@@ -26,6 +30,8 @@ const userSeed = [
     email: "yoda@theforce.com",
     password: "123password",
     location: "Austin",
+    favorites: ["60b820f196ae0e2738634c3c"],
+    completed: [],
     points: 20
   }
 ];

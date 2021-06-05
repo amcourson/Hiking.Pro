@@ -5,13 +5,16 @@ export default {
   getLocation: function(id) {
     return axios.get("/api/locations/" + id);
   },
+  getLocationByState: function(region) {
+    return axios.get("/api/locations/search/" + region);
+  },
   //Get all Locations
   getLocations: function() {
-    return axios.get("/api/locations");
+    return axios.get("/api/locations/");
   },
   //Saves a new location to 
   saveLocation: function() {
-    return axios.post("/api/locations");
+    return axios.post("/api/locations/");
   },
   //Registers a new user
   registerUser: function() {

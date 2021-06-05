@@ -7,6 +7,8 @@ const userSchema = new Schema({
   email: { type: String, required: [true, "Can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'] },
   password: {type: String, required: [true, "Can't be blank"]},
   location: {type: String, required: [true, "Can't be blank"], match: [/^[a-zA-Z]+$/, 'is invalid']},
+  favorites: [],
+  completed: [],
   points: {type: Number, default: 0}
 });
 
