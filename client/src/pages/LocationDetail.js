@@ -1,4 +1,4 @@
-  
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
@@ -44,11 +44,11 @@ const LocationDetail = props => {
         ) : (
             <div>loading...</div>
         )}
-        <Map 
-       name = {state.currentLocation.name}
-       lat = {state.currentLocation.latitude}
-       lng = {state.currentLocation.longitude}
-        />
+            <Map
+                name={state.currentLocation.name}
+                lat={state.currentLocation.latitude}
+                lng={state.currentLocation.longitude}
+            />
         </div>
     );
 }

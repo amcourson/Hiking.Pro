@@ -5,6 +5,7 @@ import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING } from '../../utils/actions
 
 function CreateLocationForm() {
   const locationRef = useRef();
+  const difficultyRef = useRef();
   const [state, dispatch] = useStoreContext();
 
   // const getLocationByState = (state) => {
@@ -26,10 +27,14 @@ function CreateLocationForm() {
     //This is going to push the location to the global state currently should be in state abbreviation format
     dispatch({
       type: SET_SEARCH_LOCATION,
-      region: { "region": stateAbbreviation },
+      region: { 
+        "region": stateAbbreviation,
+        "difficulty": difficultyRef.current.value,
+    },
     })
     //Going to reset the search value
     locationRef.current.value = '';
+    difficultyRef.current.value = '';
   };
 
   return (
@@ -95,6 +100,21 @@ function CreateLocationForm() {
           <option value="WV">West Virginia</option>
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
+        </select>
+
+        <label for="difficulty">Choose a State:</label>
+        <select
+          id="difficulty"
+          name="difficulty"
+          ref={difficultyRef}
+          required
+        >
+          <option value="ExtremelyDifficult">Extremely Difficult / Dbl Black Diamond</option>
+          <option value="VeryDifficult">Very Difficult / Black Diamond</option>
+          <option value="Intermediate">Intermediate / Blue Square</option>
+          <option value="Easy">Easy / Green Circle</option>
+          <option value="Easiest">Easiest / White Circle</option>
+       
         </select>
 
         <button
