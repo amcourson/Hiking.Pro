@@ -3,10 +3,11 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import './LoginPage.css'
 let axios = require('axios').default
 
-export default function LoginPage() {
+export default function LoginPage(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
+
 
   function validateForm() {
     return (
@@ -20,22 +21,21 @@ export default function LoginPage() {
     // post; if not good setInputValid(false); if good redirect
     let response
     try {
-      response = await axios('/api/login', {
+      response = await axios('/api/users/login', {
         method: 'post',
         data: {
           email: email,
           password: password
         }
       })
+      console.log(response)
     } catch (err) {
-      console.log(err)
-      console.log('bad')
-      return
+      console.log('bad', err)
     }
-    if (!response.status == 200) {
-      console.log('gpp')
-      setInputValid(false)
-    }
+    if (typeof response == 'undefined') return console.log('no reponse received')
+    if (!response.status == 200) return setInputValid(false)
+
+    props.updateAuthToken(response.data.token)
   }
 
   return (
@@ -47,6 +47,8 @@ export default function LoginPage() {
             <Form.Group size='lg'>
               <Form.Label>Email</Form.Label>
               <Form.Control
+                name={'email'}
+                type={'email'}
                 autoFocus
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

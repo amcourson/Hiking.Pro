@@ -1,7 +1,7 @@
 let express = require('express')
 let dotenv = require('dotenv').config()
 const mongoose = require("mongoose");
-const passport = require("passport");
+// const passport = require("passport");
 
 let PORT = process.env['PORT'] || 3001
 
@@ -14,7 +14,8 @@ let app = express()
 app.use(
     express.urlencoded({ extended: true }),
     express.json(),
-    require('./routes')
+    require('./routes'),
+    require('cors')()
 )
 
 // DB Config
@@ -28,10 +29,10 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-// Passport middleware
-app.use(passport.initialize());
-// Passport config
-require("./config/passport")(passport);
+// // Passport middleware
+// app.use(passport.initialize());
+// // Passport config
+// require("./config/passport")(passport);
 
 
 

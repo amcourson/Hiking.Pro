@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function Home(props) {
     return (
@@ -12,6 +13,7 @@ function Home(props) {
                     <input placeholder='Enter your location' type='text'></input>
                     <button><i className='location-detect-icon'></i></button>
                 </div>
+                <Link to='/login'>Already have an account? Click here to log in</Link>
                 <div className='dropdown'></div>
                 <div>
                     <form>
