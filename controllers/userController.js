@@ -1,23 +1,20 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const keys = require("../config/keys");
-// Load input validation
-const validateRegisterInput = require("../utils/validation/register");
-const validateLoginInput = require("../utils/validation/login");
+const { JWTSECRET } = require('../config/keys.js')
+const {validateRegisterInput, validateLoginInput} = require("../utils");
 
 
 module.exports = {
     create: function (req, res) {
-        const { errors, isValid } = validateRegisterInput(req.body);
+        const { errors, isValid } = validateRegisterInput(req.data);
         // Check validation
         if (!isValid) {
             return res.status(400).json(errors);
         }
         User.findOne({ email: req.body.email }).then(user => {
             if (user) {
-                return res.status(400).json({ email: "Email already exists" });
+                return res.status(400).json({ message: "Email already exists" });
             } else {
                 const newUser = new User({
                     username: req.body.username,
@@ -39,41 +36,33 @@ module.exports = {
             }
         });
     },
-    login: function (req, res) {
-        // Form validation
-        const { errors, isValid } = validateLoginInput(req.body);
-        // Check validation
+    login: (req, res) => {
+        console.log('req')
+        const { email, password } = req.body
+        const { errors, isValid } = validateLoginInput(email, password);
         if (!isValid) {
-            return res.status(400).json(errors);
+            return res.status(400).json({message: 'invalid password'});
         }
-        const email = req.body.email;
-        const password = req.body.password;
-        // Find user by email
         User.findOne({ email }).then(user => {
-            // Check if user exists
             if (!user) {
-                return res.status(404).json({ emailnotfound: "Email or Password incorrect" });
+                return res.status(404).json({ message: 'not found' });
             }
-            // Check password
             bcrypt.compare(password, user.password).then(isMatch => {
                 if (isMatch) {
-                    // User matched
-                    // Create JWT Payload
                     const payload = {
                         id: user.id,
                         name: user.name
                     };
-                    // Sign token
                     jwt.sign(
                         payload,
-                        keys.secretOrKey,
+                        JWTSECRET,
                         {
-                            expiresIn: 31556926 // 1 year in seconds
+                            expiresIn: '24h'
                         },
                         (err, token) => {
-                            res.json({
-                                success: true,
-                                token: "Bearer " + token
+                            res.status(200).json({
+                                token: token,
+                                user: {email: user.email, id: user.id}
                             });
                         }
                     );
@@ -85,14 +74,17 @@ module.exports = {
             });
         });
     },
+    getData: (req, res) => {
+        
+    },
     findById: function (req, res) {
-        db.User.findById(req.params.id)
+        User.findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
-        db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
+        User.findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    }
+    },
 };
