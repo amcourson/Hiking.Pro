@@ -1,6 +1,10 @@
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { LoginPage, Dashboard, Home } from './components'
+import { LoginPage, Home } from './components'
 import {useState} from 'react'
+import LocationDetail from "./pages/LocationDetail";
+import { StoreProvider } from "./utils/GlobalState";
+import Dashboard from "./pages/dashboard";
+
 
 
 function App() {
@@ -25,6 +29,7 @@ function App() {
             window.location.href = '/dashboard'
           }}/>
         </Route>
+        <Route exact path="/locations/:id" component={LocationDetail} />
       </Switch>
     </Router>
   );
