@@ -7,20 +7,24 @@ const PORT = process.env.PORT || 3001;
 
 
 // Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
 // Serves static assets on Heroku
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("./client/build"));
-  }
+  app.use(express.static("./client/build"));
+}
+// if (process.env.NODE_ENV != "production") {
+//   app.use(express.static("./client/public"));
+// }
 
-let app = express()
+
+
 app.use(
-    express.urlencoded({ extended: true }),
-    express.json(),
-    require('./routes'),
-    require('cors')()
+  express.urlencoded({ extended: true }),
+  express.json(),
+  require('./routes'),
+  require('cors')()
 )
 
 // DB Config
