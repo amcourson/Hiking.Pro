@@ -7,6 +7,7 @@ export default function LoginPage(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
+  let [inputValidMessage, setInputValidMessage] = useState(null)
 
 
   function validateForm() {
@@ -17,8 +18,6 @@ export default function LoginPage(props) {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    console.log('submi')
-    // post; if not good setInputValid(false); if good redirect
     let response
     try {
       response = await axios('/api/users/login', {
@@ -30,11 +29,14 @@ export default function LoginPage(props) {
       })
       console.log(response)
     } catch (err) {
-      console.log('bad', err)
+      console.error(err)
+      setInputValid(false)
+      setInputValidMessage(response.message)
     }
-    if (typeof response == 'undefined') return console.log('no reponse received')
+    if (typeof response == 'undefined') return console.log('no response received')
     if (!response.status == 200) return setInputValid(false)
 
+    // sign in successful, initiate session
     props.updateAuthToken(response.data.token)
   }
 
@@ -72,7 +74,7 @@ export default function LoginPage(props) {
                 } else {
                   return (
                     <div>
-                      <p className='text-danger'>Input invalid. Please try again.</p>
+                      <p className='text-danger'>Input invalid. Please try again.</p><p>{inputValidMessage ? `Server response: ${inputValidMessage}` : ''}</p>
                     </div>
                   )
                 }
