@@ -65,7 +65,9 @@ const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         locations: [],
         searchLocation: {
-            region: ""
+            region: "TX",
+            city: "Austin",
+            difficulty: "Intermediate"
         },
         currentLocation: {
             _id: 0,

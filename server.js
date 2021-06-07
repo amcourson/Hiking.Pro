@@ -5,15 +5,16 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+if (process.env.NODE_env === 'production'){
+  app.use(express.static(path.join(__dirname, 'client', 'build')));
+}
 
 
 app.use(
-    express.urlencoded({ extended: true }),
-    express.json(),
-    require('./routes'),
-    require('cors')()
+  express.urlencoded({ extended: true }),
+  express.json(),
+  require('./routes'),
+  require('cors')()
 )
 
 // DB Config

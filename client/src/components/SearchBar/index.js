@@ -5,6 +5,8 @@ import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING } from '../../utils/actions
 
 function CreateLocationForm() {
   const locationRef = useRef();
+  const difficultyRef = useRef();
+  const cityRef = useRef();
   const [state, dispatch] = useStoreContext();
 
   // const getLocationByState = (state) => {
@@ -22,20 +24,37 @@ function CreateLocationForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     //going to turn the abbreviation to uppercase
+    
+    const cityConversion= (city) => {
+      return city.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join('-');
+    }
     const stateAbbreviation = locationRef.current.value.toUpperCase()
     //This is going to push the location to the global state currently should be in state abbreviation format
     dispatch({
       type: SET_SEARCH_LOCATION,
-      region: { "region": stateAbbreviation },
+      region: { 
+        "region": stateAbbreviation,
+        "city": cityConversion(cityRef.current.value),
+        "difficulty": difficultyRef.current.value,
+    },
     })
-
-    locationRef.current.value = '';
+    //Going to reset the search value
+    // locationRef.current.value = '';
+    // difficultyRef.current.value = '';
   };
 
   return (
     <div>
       <h1>Filter your Results</h1>
       <form className="form-group mt-5 mb-5" onSubmit={handleSubmit}>
+      <label for="city">City:</label>
+        <input
+          className="form-control mb-5"
+          ref={cityRef}
+          id="city"
+          placeholder="City"
+        />
+        {/* Dropdown menu for states */}
         <label for="location">Choose a State:</label>
         <select
           id="location"
@@ -95,7 +114,22 @@ function CreateLocationForm() {
           <option value="WI">Wisconsin</option>
           <option value="WY">Wyoming</option>
         </select>
-
+        <br></br>
+        <label for="difficulty">Choose a Difficulty:</label>
+        <select
+          id="difficulty"
+          name="difficulty"
+          ref={difficultyRef}
+          required
+        >
+          <option value="ExtremelyDifficult">Extremely Difficult / Dbl Black Diamond</option>
+          <option value="VeryDifficult">Very Difficult / Black Diamond</option>
+          <option value="Intermediate">Intermediate / Blue Square</option>
+          <option value="Easy">Easy / Green Circle</option>
+          <option value="Easiest">Easiest / White Circle</option>
+       
+        </select>
+        <br></br>
         <button
           className="btn btn-success mt-3 mb-5"
           // disabled={state.loading}

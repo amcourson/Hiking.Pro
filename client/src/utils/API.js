@@ -5,8 +5,11 @@ export default {
   getLocation: function(id) {
     return axios.get("/api/locations/" + id);
   },
-  getLocationByState: function(region) {
-    return axios.get("/api/locations/search/" + region);
+  getLocationByState: function(region, city, difficulty) {
+    console.log("Frontend API"+region)
+    console.log("Frontend API"+difficulty)
+    console.log("/api/locations/search/" + region + "&" + difficulty)
+    return axios.get("/api/locations/search/" + region + "&" + city + "&" + difficulty);
   },
   //Get all Locations
   getLocations: function() {
