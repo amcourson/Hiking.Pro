@@ -1,21 +1,14 @@
 const express = require("express");
-
+const path = require('path')
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 
-// Define middleware here
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-// Serves static assets on Heroku
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("./client/build"));
-  }
 
-let app = express()
 app.use(
     express.urlencoded({ extended: true }),
     express.json(),
@@ -34,5 +27,6 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')))
 
 app.listen(PORT, () => console.log(`LISTENING AT https://localhost:${PORT}`))
