@@ -1,6 +1,9 @@
-import Home from './Home.js'
-import LoginPage from './LoginPage.js'
-import Dashboard from '../pages/dashboard'
+import Home from './Home'
+import LoginPage from './LoginPage'
+import Dashboard from './Dashboard'
+import SearchBar from './SearchBar'
+import List from './List'
+import LocationList from './LocationList'
 
 export default { 
     Home,
@@ -8,8 +11,11 @@ export default {
     Dashboard
 }
 
-// export { 
-//     Home,
-//     LoginPage,
-//     Dashboard
-//  }
+export { 
+    Home,
+    LoginPage,
+    Dashboard,
+    SearchBar,
+    LocationList,
+    List
+ }
