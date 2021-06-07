@@ -12,7 +12,8 @@ function LocationList() {
   const getLocations = () => {
     dispatch({ type: LOADING });
     console.log(state.searchLocation.region)
-      API.getLocationByState(state.searchLocation.region)
+    console.log(state.searchLocation.difficulty)
+      API.getLocationByState(state.searchLocation.region, state.searchLocation.difficulty)
         .then(results => {
           dispatch({
             type: GET_LOCATIONS,

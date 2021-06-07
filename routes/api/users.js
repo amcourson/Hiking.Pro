@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const userController = require("../../controllers/userController");
+const userController = require("../../controllers/userController.js");
 
 router
   .route("/register")
@@ -12,6 +12,9 @@ router
 router
   .route("/:id")
   .get(userController.findById)
-  .put(userController.update);
+  .put(userController.update)
+
+router.route('/data')
+  .get(userController.getData)
 
 module.exports = router;

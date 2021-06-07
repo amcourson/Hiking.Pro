@@ -1,4 +1,6 @@
+let dotenv = require('dotenv').config()
+
 module.exports = {
-    mongoURI: "mongodb://localhost/hikingpro" ,
-    secretOrKey: "secret"
-  };
+    JWTSECRET: process.env['JWT_SECRET'] || 'testSecret',
+    mongoURI: "mongodb://localhost/hikingpro"
+}

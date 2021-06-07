@@ -1,26 +1,35 @@
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
-const mongoose = require("mongoose");
-const User = mongoose.model("users");
-const keys = require("../config/keys");
-const opts = {};
+// const mongoose = require("mongoose")
+// const User = mongoose.model("users")
+// let passport = require('passport')
+// let passportJWT = require('passport-jwt')
+// let LocalStrategy = require('passport-local')
+// let dotenv = require('dotenv').config()
 
 
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = keys.secretOrKey;
+// passport.use(new LocalStrategy(
+//   { userNameField: 'email' },
+//   (email, password, done) => {
+//     if (email == user.email && password == user.password) {
+//       return done(null, user)
+//     } else {
+//       return done(null, false, { message: 'Token not matched.' })
+//     }
+//   }
+// ))
 
+// passport.use(new passportJWT.JWTStrategy(
+//   {
+//     jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
+//     secretOrKey: process.env['JWT_SECRET'] || 'test_secret'
+//   }, 
+//   async (jwt_payload, done) => {
+//     User.findOne(jwt_payload).then()
+//     if (user.id == jwt_payload.user.id) {
+//       return done(null, user)
+//     } else {
+//       return done(null, false, { message: 'Token not matched.'})
+//     }
+//   }
+// ))
 
-module.exports = passport => {
-  passport.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
-      User.findById(jwt_payload.id)
-        .then(user => {
-          if (user) {
-            return done(null, user);
-          }
-          return done(null, false);
-        })
-        .catch(err => console.log(err));
-    })
-  );
-};
+// module.exports = passport
