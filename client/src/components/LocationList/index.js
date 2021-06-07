@@ -25,7 +25,7 @@ function LocationList() {
 
   useEffect(() => {
     getLocations();
-  }, [state.searchLocation.region]);
+  }, [state.searchLocation]);
 
 
   return (

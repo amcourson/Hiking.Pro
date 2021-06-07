@@ -102,7 +102,7 @@ function CreateLocationForm() {
           <option value="WY">Wyoming</option>
         </select>
 
-        <label for="difficulty">Choose a State:</label>
+        <label for="difficulty">Choose a Difficulty:</label>
         <select
           id="difficulty"
           name="difficulty"
