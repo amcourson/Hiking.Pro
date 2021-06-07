@@ -8,10 +8,12 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --inspect server.js --config nodemon.json\" \"&& npm run client\"",
     "client": "cd client && npm run start",
+    "server": "nodemon server.js",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
