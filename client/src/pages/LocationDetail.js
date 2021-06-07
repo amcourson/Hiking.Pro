@@ -1,4 +1,4 @@
-  
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStoreContext } from "../utils/GlobalState";
@@ -28,27 +28,37 @@ const LocationDetail = props => {
 
 
     return (
-        <div>{state.currentLocation ? (
-            <div>
-                <h1>{state.currentLocation.name} in {state.currentLocation.city}, {state.currentLocation.region} </h1>
-                <h1>Trail Stats:</h1>
-                <ul>
-                    <li>Difficulty: {state.currentLocation.difficulty}</li>
-                    <li>Distance:{state.currentLocation.distance}</li>
-                    <li>Descent:{state.currentLocation.descent}</li>
-                    <li>Climb:{state.currentLocation.climb}</li>
-                    <li>Area:{state.currentLocation.area}</li>
-                </ul>
-                <Link to="/">← Back to Posts</Link>
+        <div className="container">
+            <div className="row">
+                {state.currentLocation ? (
+
+
+                    <div className="col-md-6">
+                        <h2>{state.currentLocation.name} </h2>
+                        <h3>{state.currentLocation.city}, {state.currentLocation.region} </h3>
+                        <h3>Trail Stats:</h3>
+                        <ul>
+                            <li>Difficulty: {state.currentLocation.difficulty}</li>
+                            <li>Distance:{state.currentLocation.distance}</li>
+                            <li>Descent:{state.currentLocation.descent}</li>
+                            <li>Climb:{state.currentLocation.climb}</li>
+                            <li>Area:{state.currentLocation.area}</li>
+                        </ul>
+                        <Link to="/dashboard">← Back to Posts</Link>
+                    </div>
+
+                ) : (
+                    <div>loading...</div>
+                )}
+                    <div className="col-md-6">
+                        <Map
+                            name={state.currentLocation.name}
+                            lat={state.currentLocation.latitude}
+                            lng={state.currentLocation.longitude}
+                        />
+                    </div>
+                
             </div>
-        ) : (
-            <div>loading...</div>
-        )}
-        <Map 
-       name = {state.currentLocation.name}
-       lat = {state.currentLocation.latitude}
-       lng = {state.currentLocation.longitude}
-        />
         </div>
     );
 }
