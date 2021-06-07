@@ -4,7 +4,7 @@ const db = require("../models");
 module.exports = {
   findAll: function (req, res) {
     db.Location.find(req.query)
-      .sort({ region: -1 })
+      .sort({ name: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -29,9 +29,10 @@ module.exports = {
 
     db.Location.find({
       region: req.params.region,
+      city: req.params.city.split("-").join(" "),
       difficulty: difficultySwitch(req.params.difficulty)
     })
-      .sort({ name: -1 })
+      .sort({ city: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

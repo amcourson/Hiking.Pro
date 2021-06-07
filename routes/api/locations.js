@@ -8,7 +8,7 @@ router
   .post(locationController.create);
 
   router
-  .route("/search/:region&:difficulty")
+  .route("/search/:region&:city&:difficulty")
   .get(locationController.findByState)
 
 // Matches with "/api/location/:id"
