@@ -13,7 +13,7 @@ function LocationList() {
     dispatch({ type: LOADING });
     console.log(state.searchLocation.region)
     console.log(state.searchLocation.difficulty)
-      API.getLocationByState(state.searchLocation.region, state.searchLocation.difficulty)
+      API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
         .then(results => {
           dispatch({
             type: GET_LOCATIONS,
@@ -25,7 +25,7 @@ function LocationList() {
 
   useEffect(() => {
     getLocations();
-  }, [state.searchLocation.region]);
+  }, [state.searchLocation]);
 
 
   return (
