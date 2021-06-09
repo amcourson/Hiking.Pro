@@ -9,9 +9,18 @@ const Dashboard = () => {
 
     return (
         <div>
-        <UserInfo />
-        <CreateLocationForm />
-        <LocationList />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <UserInfo />
+                    </div>
+                    <div className="col-md-6">
+                        <CreateLocationForm />
+                        <LocationList />
+                    </div>
+                </div>
+                <div className="row"></div>
+            </div>
         </div>
     );
 };
