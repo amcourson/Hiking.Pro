@@ -11,8 +11,6 @@ function LocationList() {
 
   const getLocations = () => {
     dispatch({ type: LOADING });
-    console.log(state.searchLocation.region)
-    console.log(state.searchLocation.difficulty)
       API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
         .then(results => {
           dispatch({
@@ -30,8 +28,7 @@ function LocationList() {
 
   return (
     <div>
-      <h1>All Trails</h1>
-      <h3 className="mb-5 mt-5">Click on a Trail to view</h3>
+      <h3 className="mb-0 mt-0">Click on a Trail to view</h3>
       {state.locations.length ? (
         <List>
           {state.locations.map(location => (

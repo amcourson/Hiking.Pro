@@ -9,6 +9,7 @@ import Map from "../components/maps";
 const LocationDetail = props => {
     const [state, dispatch] = useStoreContext();
 
+
     const getLocation = () => {
         dispatch({ type: LOADING });
         API.getLocation(props.match.params.id)
@@ -42,8 +43,24 @@ const LocationDetail = props => {
                     user: results.data
                 });
             })
+            .then(() => {
+                window.location.reload(false)
+            })
             .catch(err => console.log(err));
     };
+
+    const getUser = () => {
+        dispatch({ type: LOADING });
+    
+          API.getUser(state.currentUser._id)
+            .then(results => {
+              dispatch({
+                type: CURRENT_USER,
+                user: results.data
+              });
+            })
+          .catch(err => console.log(err));
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,6 +69,7 @@ const LocationDetail = props => {
 
     useEffect(() => {
         getLocation();
+        getUser();
     }, []);
 
 
@@ -72,14 +90,26 @@ const LocationDetail = props => {
                             <li>Climb:{state.currentLocation.climb}</li>
                             <li>Area:{state.currentLocation.area}</li>
                         </ul>
-                        <button
-                            className="btn btn-success mt-3 mb-5"
-                            disabled={state.loading}
-                            type="submit"
-                            onClick={handleSubmit}
-                        >
-                            Complete Hike!
-                        </button>
+                        {state.currentUser.completedHikes.some(e => e._id === state.currentLocation._id) ? (
+                            <button
+                                className="btn btn-success mt-3 mb-5"
+                                disabled
+                            >
+                                Completed!
+                            </button>
+                        ) : (
+                            <Link to="" refresh="true">
+                            <button
+                                className="btn btn-success mt-3 mb-5"
+                                disabled={state.loading}
+                                type="submit"
+                                onClick={handleSubmit}
+                            >
+                                Complete Hike!
+                            </button>
+                            </Link>
+                        )}
+
                         <Link to="/dashboard">← Back to Posts</Link>
                     </div>
 
