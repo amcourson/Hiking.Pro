@@ -49,7 +49,7 @@ function CreateLocationForm() {
       <form className="form-group mt-0 mb-0" onSubmit={handleSubmit}>
         <div className="row mb-3">
           <div className="col-auto">
-            <label htmlfor="city">City:</label>
+            <label htmlFor="city">City:</label>
             <input
               className="form"
               ref={cityRef}
@@ -59,7 +59,7 @@ function CreateLocationForm() {
           </div>
           <div className="col-auto">
             {/* Dropdown menu for states */}
-            <label htmlfor="location">State:</label>
+            <label htmlFor="location">State:</label>
             <select
               id="location"
               name="location"
@@ -120,7 +120,7 @@ function CreateLocationForm() {
             </select>
           </div>
         </div>
-        <label htmlfor="difficulty">Choose a Difficulty:</label>
+        <label htmlFor="difficulty">Choose a Difficulty:</label>
         <select
           id="difficulty"
           name="difficulty"

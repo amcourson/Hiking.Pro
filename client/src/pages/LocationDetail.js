@@ -42,7 +42,6 @@ const LocationDetail = props => {
                     type: CURRENT_USER,
                     user: results.data
                 });
-                console.log(state.currentUser.completedHikes)
             })
             .then(() => {
                 window.location.reload(false)
