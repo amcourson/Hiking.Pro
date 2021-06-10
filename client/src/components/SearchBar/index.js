@@ -47,11 +47,11 @@ function CreateLocationForm() {
     <div>
       <h1>Filter your Results</h1>
       <form className="form-group mt-0 mb-0" onSubmit={handleSubmit}>
-        <div className="row mb-3">
+        <div className="row mb-2">
           <div className="col-auto">
-            <label htmlFor="city">City:</label>
+            <label htmlFor="city" className="form-label">City</label>
             <input
-              className="form"
+              className="form-control"
               ref={cityRef}
               id="city"
               placeholder="City"
@@ -59,8 +59,9 @@ function CreateLocationForm() {
           </div>
           <div className="col-auto">
             {/* Dropdown menu for states */}
-            <label htmlFor="location">State:</label>
+            <label htmlFor="location" className="form-label">State</label>
             <select
+              className="form-select"
               id="location"
               name="location"
               ref={locationRef}
@@ -119,28 +120,34 @@ function CreateLocationForm() {
               <option value="WY">Wyoming</option>
             </select>
           </div>
-        </div>
-        <label htmlFor="difficulty">Choose a Difficulty:</label>
-        <select
-          id="difficulty"
-          name="difficulty"
-          ref={difficultyRef}
-          required
-        >
-          <option value="ExtremelyDifficult">Extremely Difficult / Dbl Black Diamond</option>
-          <option value="VeryDifficult">Very Difficult / Black Diamond</option>
-          <option value="Intermediate">Intermediate / Blue Square</option>
-          <option value="Easy">Easy / Green Circle</option>
-          <option value="Easiest">Easiest / White Circle</option>
+          <div className="col-auto">
+            <label htmlFor="difficulty" className="form-label">Difficulty</label>
+            <select
+              className="form-select"
+              id="difficulty"
+              name="difficulty"
+              ref={difficultyRef}
+              required
+            >
+              <option value="ExtremelyDifficult">Extremely Difficult / Dbl Black Diamond</option>
+              <option value="VeryDifficult">Very Difficult / Black Diamond</option>
+              <option value="Intermediate">Intermediate / Blue Square</option>
+              <option value="Easy">Easy / Green Circle</option>
+              <option value="Easiest">Easiest / White Circle</option>
 
-        </select>
-        <br></br>
-        <button
-          className="btn btn-success mt-3 mb-5"
-          // disabled={state.loading}
-          type="submit"
-        >Search
-        </button>
+            </select>
+          </div>
+          <div className="col-auto">
+            <br></br>
+            <button
+              className="btn btn-success mt-2"
+              // disabled={state.loading}
+              type="submit"
+            >
+              Search
+          </button>
+          </div>
+        </div>
       </form>
     </div>
   );
