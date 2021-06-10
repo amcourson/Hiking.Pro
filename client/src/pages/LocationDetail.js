@@ -51,16 +51,16 @@ const LocationDetail = props => {
 
     const getUser = () => {
         dispatch({ type: LOADING });
-
-        API.getUser(state.currentUser._id)
+    
+          API.getUser(state.currentUser._id)
             .then(results => {
-                dispatch({
-                    type: CURRENT_USER,
-                    user: results.data
-                });
+              dispatch({
+                type: CURRENT_USER,
+                user: results.data
+              });
             })
-            .catch(err => console.log(err));
-    };
+          .catch(err => console.log(err));
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,19 +75,20 @@ const LocationDetail = props => {
 
     return (
         <div className="container">
-            <div className="row mt-3">
+            <div className="row">
                 {state.currentLocation ? (
 
 
                     <div className="col-md-6">
-                        <h3>{state.currentLocation.name}: {state.currentLocation.city}, {state.currentLocation.region} </h3>
-                        <Link to="/dashboard">← Back to Dashboard</Link>
+                        <h2>{state.currentLocation.name} </h2>
+                        <h3>{state.currentLocation.city}, {state.currentLocation.region} </h3>
+                        <h3>Trail Stats:</h3>
                         <ul>
-                            <li>Area: {state.currentLocation.area}</li>
                             <li>Difficulty: {state.currentLocation.difficulty}</li>
-                            <li>Distance: {state.currentLocation.distance}</li>
-                            <li>Descent: {state.currentLocation.descent}</li>
-                            <li>Climb: {state.currentLocation.climb}</li>
+                            <li>Distance:{state.currentLocation.distance}</li>
+                            <li>Descent:{state.currentLocation.descent}</li>
+                            <li>Climb:{state.currentLocation.climb}</li>
+                            <li>Area:{state.currentLocation.area}</li>
                         </ul>
                         {state.currentUser.completedHikes.some(e => e._id === state.currentLocation._id) ? (
                             <button
@@ -98,17 +99,18 @@ const LocationDetail = props => {
                             </button>
                         ) : (
                             <Link to="" refresh="true">
-                                <button
-                                    className="btn btn-success mt-3 mb-5"
-                                    disabled={state.loading}
-                                    type="submit"
-                                    onClick={handleSubmit}
-                                >
-                                    Complete Hike!
+                            <button
+                                className="btn btn-success mt-3 mb-5"
+                                disabled={state.loading}
+                                type="submit"
+                                onClick={handleSubmit}
+                            >
+                                Complete Hike!
                             </button>
                             </Link>
                         )}
 
+                        <Link to="/dashboard">← Back to Posts</Link>
                     </div>
 
                 ) : (
