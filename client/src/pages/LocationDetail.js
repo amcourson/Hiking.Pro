@@ -112,7 +112,7 @@ const LocationDetail = props => {
                     </div>
 
                 ) : (
-                    <div>loading...</div>
+                    <div>loading..</div>
                 )}
                 <div className="col-md-6">
                     <Map
