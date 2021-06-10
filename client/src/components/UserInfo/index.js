@@ -29,8 +29,12 @@ function UserInfo() {
 
   return (
     <div>
-      <h1>Welcome {state.currentUser.username}!</h1>
-      <h3 className="mb-5 mt-5">Completed Hikes</h3>
+      {state.currentUser.completedHikes.length ? (
+      <h4 className="">Congrats {state.currentUser.username}, you have {state.currentUser.completedHikes.length} completed Hikes!</h4>
+      ) : (
+        <h4 className="">Oh No! {state.currentUser.username}, you have no completed hikes</h4>
+
+      )}
       {state.currentUser.completedHikes.length ? (
         <List>
           {state.currentUser.completedHikes.map(location => (
@@ -44,7 +48,7 @@ function UserInfo() {
           ))}
         </List>
       ) : (
-        <h3>You do not have any completed Hikes yet</h3>
+        <h3>Get to steppin! </h3>
       )}
     </div>
   );

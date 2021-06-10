@@ -28,7 +28,7 @@ function LocationList() {
 
   return (
     <div>
-      <h3 className="mb-0 mt-0">Click on a Trail to view</h3>
+      <h4 className="mb-2 mt-0">Explore New Trails</h4>
       {state.locations.length ? (
         <List>
           {state.locations.map(location => (
