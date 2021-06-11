@@ -17,7 +17,7 @@ module.exports = {
                 return res.status(400).json({ message: "Email already exists" });
             } else {
                 const newUser = new User({
-                    username: req.body.username,
+                    name: req.body.name,
                     email: req.body.email,
                     password: req.body.password,
                     location: req.body.location

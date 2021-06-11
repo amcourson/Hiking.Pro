@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 //User Schema contains Username, email, password, bio, avatar, and total points
 const userSchema = new Schema({
+  name: { type: String, required: [true, "Can't be blank"] },
   email: { type: String, required: [true, "Can't be blank"] },
   password: {type: String, required: [true, "Can't be blank"] },
   location: {type: String, required: [true, "Can't be blank"] },

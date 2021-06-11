@@ -1,19 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { LoginPage, Home } from './components'
+import { LoginPage, Home, NavBar } from './components'
 import { useState } from 'react'
 import LocationDetail from "./pages/LocationDetail";
 import { StoreProvider } from "./utils/GlobalState";
 import Dashboard from "./pages/dashboard";
+import logo from "./logo.png";
 
 
 
 function App() {
   let [authToken, updateAuthToken] = useState(false)
 
+
   return (
     <Router>
       <StoreProvider>
+        <NavBar />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -28,7 +31,7 @@ function App() {
             <LoginPage updateAuthToken={(token) => {
               localStorage.setItem('authToken', token)
               updateAuthToken(token)
-              window.location.href = '/dashboard'
+              // window.location.href = '/dashboard'
             }} />
           </Route>
           <Route exact path="/locations/:id" component={LocationDetail} />

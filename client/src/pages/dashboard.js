@@ -11,11 +11,17 @@ const Dashboard = () => {
         <div>
             <div className="container">
                 <div className="row">
+                    <div className="col-1"></div>
+                    <div className="col-10">
+                        <CreateLocationForm />
+                    </div>
+                    <div className="col-1"></div>
+                </div>
+                <div className="row">
                     <div className="col-md-6">
                         <UserInfo />
                     </div>
                     <div className="col-md-6">
-                        <CreateLocationForm />
                         <LocationList />
                     </div>
                 </div>
