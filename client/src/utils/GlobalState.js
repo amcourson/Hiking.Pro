@@ -4,7 +4,6 @@ import {
     SET_CURRENT_LOCATION,
     SET_SEARCH_LOCATION,
     CREATE_LOCATION,
-    CURRENT_USER,
     LOADING
 } from "./actions";
 
@@ -26,13 +25,6 @@ const reducer = (state, action) => {
               ...state,
               currentLocation: action.location,
               loading: false
-            };
-
-        case CURRENT_USER:
-            return {
-                ...state,
-                currentUser: action.user,
-                loading: false
             };
 
         case GET_LOCATIONS:
