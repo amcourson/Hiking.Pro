@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { LoginPage, Home } from './components'
+import { Login, Home } from './pages'
 import { useState } from 'react'
 import LocationDetail from "./pages/LocationDetail";
 import { StoreProvider } from "./utils/GlobalState";
@@ -16,7 +16,11 @@ function App() {
       <StoreProvider>
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Home updateAuthToken={(token) => {
+              localStorage.setItem('authToken', token)
+              updateAuthToken(token)
+              window.location.href = '/dashboard'
+            }} />
           </Route>
           <Route exact path='/supersecretroutethisrouteissoooosecretthatyouwouldneverfinditbylookingelephantdidyouseehowelephantisinarandomplacethatmakesnosensethatmakesthisrouteevenhardertofind'>
             <h1>SECRET</h1>
@@ -25,7 +29,7 @@ function App() {
             <Dashboard />
           </Route>
           <Route exact path='/login'>
-            <LoginPage updateAuthToken={(token) => {
+            <Login updateAuthToken={(token) => {
               localStorage.setItem('authToken', token)
               updateAuthToken(token)
               window.location.href = '/dashboard'

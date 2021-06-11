@@ -84,7 +84,6 @@ const StoreProvider = ({ value = [], ...props }) => {
         },
         currentUser: {
             _id: 0,
-            username: "",
             location: "",
             points: 0
         },

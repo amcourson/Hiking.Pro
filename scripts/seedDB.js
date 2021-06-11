@@ -8,7 +8,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
 
 const userSeed = [
   {
-    username: "TheRock",
     email: "rock@therock.com",
     password: "password123",
     location: "Dallas",
@@ -17,7 +16,6 @@ const userSeed = [
     points: 40
   },
   {
-    username: "SteveBuscemi",
     email: "steve@buscemi.com",
     password: "password123",
     location: "Chicago",
@@ -26,7 +24,6 @@ const userSeed = [
     points: 0
   },
   {
-    username: "Yoda",
     email: "yoda@theforce.com",
     password: "123password",
     location: "Austin",

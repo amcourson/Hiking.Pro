@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import './LoginPage.css'
 let axios = require('axios').default
 
-export default function LoginPage(props) {
+export default function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
