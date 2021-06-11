@@ -85,6 +85,7 @@ const StoreProvider = ({ value = [], ...props }) => {
         currentUser: {
             _id: 0,
             location: "",
+            completedHikes: [],
             points: 0
         },
         loading: false

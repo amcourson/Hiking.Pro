@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 const trails = require("./trailstest.json");
+const cities = require("./citiestest.json");
 
 // This file empties the Posts collection and inserts the books below
 
@@ -11,33 +12,33 @@ const userSeed = [
     email: "rock@therock.com",
     password: "password123",
     location: "Dallas",
-    favorites: [],
-    completed: ["60b820f196ae0e2738634c3c"],
+    completedHikes: [{"_id":"60b55acbd7875054780fcf17","name":"\"bb\"","difficulty":"Intermediate / Blue Square"},{"_id":"60b55acbd7875054780fcf15","name":"\"A\" Single trail","difficulty":"Intermediate / Blue Square"}],
     points: 40
   },
   {
     email: "steve@buscemi.com",
     password: "password123",
     location: "Chicago",
-    favorites: ["60b820f196ae0e2738634c3c","60b820f196ae0e2738634c3d"],
-    completed: ["60b820f196ae0e2738634c3e"],
+    completedHikes: [{"_id":"60b55acbd7875054780fcf17","name":"\"bb\"","difficulty":"Intermediate / Blue Square"},{"_id":"60b55acbd7875054780fcf15","name":"\"A\" Single trail","difficulty":"Intermediate / Blue Square"}],
     points: 0
   },
   {
     email: "yoda@theforce.com",
     password: "123password",
     location: "Austin",
-    favorites: ["60b820f196ae0e2738634c3c"],
-    completed: [],
+    completedHikes: [],
     points: 20
-  }
+  },
+
 ];
 
 const locationSeed = trails
 
+const citySeed = cities
+
 
 db.User.remove({}) && db.Location.remove({})
-  .then(() => db.User.collection.insertMany(userSeed)) && db.Location.collection.insertMany(locationSeed)
+  .then(() => db.User.collection.insertMany(userSeed)) && db.Location.collection.insertMany(locationSeed) && db.Cities.collection.insertMany(citySeed)
     .then(data => {
       console.log(data.result.n + " records inserted!");
       process.exit(0);

@@ -5,8 +5,9 @@ import Trails from '../trails.json';
 const filteredTrails = Trails.filter(trail => trail.city === "Belmont");
 console.log(filteredTrails);
 const mapStyles = {
-    width: '100%',
-    height: '100%'
+    width: '45%',
+    height: '50%',
+    position: 'relative'
 };
 
 export class MapContainer extends Component {
@@ -39,7 +40,7 @@ export class MapContainer extends Component {
                 google={this.props.google}
                 zoom={14}
                 style={mapStyles}
-                initialCenter={
+                center={
                     {
                         lat:this.props.lat,
                         lng:this.props.lng

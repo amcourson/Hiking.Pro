@@ -5,10 +5,9 @@ export default {
   getLocation: function(id) {
     return axios.get("/api/locations/" + id);
   },
+
+  //going to allow the user to search by region city and difficulty
   getLocationByState: function(region, city, difficulty) {
-    console.log("Frontend API"+region)
-    console.log("Frontend API"+difficulty)
-    console.log("/api/locations/search/" + region + "&" + difficulty)
     return axios.get("/api/locations/search/" + region + "&" + city + "&" + difficulty);
   },
   //Get all Locations
@@ -32,8 +31,9 @@ export default {
     return axios.get("/api/users/"+id)
   },
   //Updates the users data
-  updateUser: function(id) {
-    return axios.put("/api/users/"+id)
+  updateUser: function(id, userData) {
+
+    return axios.put("/api/users/"+id, userData)
   }
 
 };

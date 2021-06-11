@@ -5,6 +5,7 @@ import { useState } from 'react'
 import LocationDetail from "./pages/LocationDetail";
 import { StoreProvider } from "./utils/GlobalState";
 import Dashboard from "./pages/dashboard";
+import logo from "./logo.png";
 
 
 
@@ -14,6 +15,28 @@ function App() {
   return (
     <Router>
       <StoreProvider>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img className="logo" src = {logo}  /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarColor02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
         <Switch>
           <Route exact path='/'>
             <Home updateAuthToken={(token) => {
