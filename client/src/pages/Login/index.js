@@ -5,7 +5,9 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { CURRENT_USER } from '../../utils/actions';
 let axios = require('axios').default
 
-export default function LoginPage(props) {
+export default function Login(props) {
+  const [state, dispatch] = useStoreContext();
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
@@ -45,10 +47,20 @@ export default function LoginPage(props) {
     } catch (err) {
       console.error(err)
       setInputValid(false)
-      setInputValidMessage(response.message)
+      //setInputValidMessage(err)
     }
     if (typeof response == 'undefined') return console.log('no response received')
     if (!response.status == 200) return setInputValid(false)
+
+    dispatch({
+      type: CURRENT_USER,
+      user: {
+        ...response.data.user,
+        loggedIn: true
+      }
+    })
+
+    console.log(state)
 
     // sign in successful, initiate session
     props.updateAuthToken(response.data.token)

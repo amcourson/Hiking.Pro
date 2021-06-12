@@ -24,18 +24,19 @@ module.exports= {
         };
       },
 
-      validateRegisterInput: (data) => {
+      validateRegisterInput: (email, password, password2) => {
+        return {erros: true, isValid: true}
         let errors = {};
       // Convert empty fields to an empty string so we can use validator functions
+<<<<<<< HEAD
         
       name = !isEmpty(username) ? username : "";
+=======
+>>>>>>> main
         email = !isEmpty(email) ? email : "";
         password = !isEmpty(password) ? password : "";
         password2 = !isEmpty(password2) ? password2 : "";
-      // username checks
-        if (Validator.isEmpty(username)) {
-          errors.name = "Name field is required";
-        }
+
       // Email checks
         if (Validator.isEmpty(email)) {
           errors.email = "Email field is required";
