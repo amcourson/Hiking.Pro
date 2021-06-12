@@ -31,16 +31,16 @@ function LocationList() {
 
   return (
     <div>
-      <h4 className="mb-2 mt-0 text-center">Explore New Trails</h4>
+      <h4 className="mb-2 mt-0 text-center">Explore New Trails in {state.searchLocation.city}</h4>
       {state.locations.length ? (
         <List>
           {state.locations.map(location => (
             <LazyLoad offsetVertical={300}>
               <ListItem key={location._id}>
                 <Link to={"/locations/" + location._id}>
-                  <strong>
-                    {location.name} in {location.city}
-                  </strong>
+                  
+                  {location.area}: <strong>{location.name} </strong>
+                  
                 </Link>
               </ListItem>
             </LazyLoad>
