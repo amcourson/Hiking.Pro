@@ -5,8 +5,12 @@ import "./style.css";
 
 function List({ children }) {
   return (
-    <div className="list-overflow-container">
-      <ul className="list-group">{children}</ul>
+    <div id="wrapper">
+      <div class="scrollbar" id="style-15">
+        <div className="force-overflow" style={{ maxHeight: "40vh" }}>
+          <ul className="list-group">{children}</ul>
+        </div>
+      </div>
     </div>
   );
 }
