@@ -30,9 +30,9 @@ function UserInfo() {
   return (
     <div>
       {state.currentUser.completedHikes.length ? (
-        <h4 className="">Congrats {state.currentUser.username}, you have {state.currentUser.completedHikes.length} completed Hikes!</h4>
+        <h4 className="">Congrats, you have {state.currentUser.completedHikes.length} completed Hikes!</h4>
       ) : (
-        <h4 className="">Oh No! {state.currentUser.username}, you have no completed hikes</h4>
+        <h4 className="">Oh No! You have no completed hikes</h4>
 
       )}
       {state.currentUser.completedHikes.length ? (

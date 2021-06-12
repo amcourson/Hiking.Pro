@@ -83,7 +83,7 @@ const StoreProvider = ({ value = [], ...props }) => {
             region: ""
         },
         currentUser: {
-            _id: "",
+            _id: "60c4dabd3b5aa47a003490b9",
             loggedIn: true,
             username: "",
             location: "",
