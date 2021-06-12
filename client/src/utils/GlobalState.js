@@ -88,7 +88,8 @@ const StoreProvider = ({ value = [], ...props }) => {
             location: "",
             completedHikes: [],
             points: 0,
-            loggedIn: false
+            loggedIn: false,
+            authToken: ''
         },
         loading: false
     });

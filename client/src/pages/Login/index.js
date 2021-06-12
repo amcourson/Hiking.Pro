@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import './LoginPage.css'
 import { useStoreContext } from "../../utils/GlobalState";
@@ -7,11 +7,11 @@ let axios = require('axios').default
 
 export default function Login(props) {
   const [state, dispatch] = useStoreContext();
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
   let [inputValidMessage, setInputValidMessage] = useState(null)
+
 
 
   function validateForm() {
@@ -39,19 +39,18 @@ export default function Login(props) {
     }
     if (typeof response == 'undefined') return console.log('no response received')
     if (!response.status == 200) return setInputValid(false)
-
+    
+    
+    //loginComplete = () => props.updateAuthToken('')
     dispatch({
-      type: CURRENT_USER,
+      type: 'CURRENT_USER',
       user: {
         ...response.data.user,
-        loggedIn: true
+        loggedIn: true,
+        authToken: response.data.token
       }
     })
-
-    console.log(state)
-
-    // sign in successful, initiate session
-    props.updateAuthToken(response.data.token)
+    setTimeout(() => props.updateAuthToken(''), 1000)
   }
 
   return (
