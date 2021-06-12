@@ -23,9 +23,7 @@ function LocationList() {
   };
 
   useEffect(() => {
-    console.time('doSomething')
     getLocations();
-    console.timeEnd('doSomething')
   }, [state.searchLocation]);
 
 
@@ -38,9 +36,7 @@ function LocationList() {
             <LazyLoad offsetVertical={300}>
               <ListItem key={location._id}>
                 <Link to={"/locations/" + location._id}>
-                  
-                  {location.area}: <strong>{location.name} </strong>
-                  
+                  {location.area}: <strong>{location.name}</strong>
                 </Link>
               </ListItem>
             </LazyLoad>

@@ -27,8 +27,7 @@ module.exports= {
       validateRegisterInput: (data) => {
         let errors = {};
       // Convert empty fields to an empty string so we can use validator functions
-        
-      name = !isEmpty(username) ? username : "";
+        name = !isEmpty(username) ? username : "";
         email = !isEmpty(email) ? email : "";
         password = !isEmpty(password) ? password : "";
         password2 = !isEmpty(password2) ? password2 : "";
