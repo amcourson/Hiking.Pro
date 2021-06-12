@@ -12,19 +12,21 @@ function UserInfo() {
   const getUser = () => {
     dispatch({ type: LOADING });
 
-    API.getUser(state.currentUser._id)
-      .then(results => {
-        dispatch({
-          type: CURRENT_USER,
-          user: results.data
-        });
-      })
-      .catch(err => console.log(err));
+    // API.getUser(state.currentUser._id)
+    //   .then(results => {
+    //     dispatch({
+    //       type: CURRENT_USER,
+    //       user: results.data
+    //     });
+    //   })
+    //   .catch(err => console.log(err));
   };
 
   useEffect(() => {
     getUser();
   }, [state.currentUser]);
+
+  
 
 
   return (

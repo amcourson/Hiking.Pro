@@ -20,7 +20,9 @@ module.exports = {
                     const newUser = new User({
                         email: req.body.email,
                         password: req.body.password,
-                        location: r 
+                        location: r,
+                        completedHikes: [],
+                        points: 0
                     })
 
                     bcrypt.genSalt(10, (err, salt) => {
@@ -43,11 +45,20 @@ module.exports = {
                                         (err, token) => {
                                             res.status(200).json({
                                                 token: token,
-                                                user: {email: user.email, id: user._id}
+                                                user: {
+                                                    _id: user._id,
+                                                    email: user.email,
+                                                    location: user.location,
+                                                    points: user.points,
+                                                    completetedHikes: []
+                                                }
                                             });
                                         }
                                     );
-                                }).catch(err => console.log(err))
+                                }).catch(err => {
+                                    console.log(err)
+                                    res.status(400).json({err: err, message: 'TRY AGAIN'})
+                                })
                         })
                     })
                 })
@@ -57,10 +68,10 @@ module.exports = {
     login: (req, res) => {
         console.log('req')
         const { email, password } = req.body
-        const { errors, isValid } = validateLoginInput(email, password);
-        if (!isValid) {
-            return res.status(400).json({message: 'invalid password'});
-        }
+        // const { errors, isValid } = validateLoginInput(email, password);
+        // if (!isValid) {
+        //     return res.status(400).json({message: 'invalid password'});
+        // }
         User.findOne({ email }).then(user => {
             if (!user) {
                 return res.status(404).json({ message: 'not found' });
@@ -79,7 +90,12 @@ module.exports = {
                         (err, token) => {
                             res.status(200).json({
                                 token: token,
-                                user: {email: user.email, _id: user._id, }
+                                user: {
+                                    _id: user._id,
+                                    email: user.email,
+                                    location: user.location,
+                                    points: user.points
+                                }
                             });
                         }
                     );

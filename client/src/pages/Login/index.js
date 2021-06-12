@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import './LoginPage.css'
 import { useStoreContext } from "../../utils/GlobalState";
+import { CURRENT_USER } from '../../utils/actions';
 let axios = require('axios').default
 
 export default function Login(props) {
@@ -34,16 +35,20 @@ export default function Login(props) {
     } catch (err) {
       console.error(err)
       setInputValid(false)
-      setInputValidMessage(response.message)
-      dispatch({
-        type: CURRENT_USER,
-        user: {
-          ...
-        }
-      })
+      //setInputValidMessage(err)
     }
     if (typeof response == 'undefined') return console.log('no response received')
     if (!response.status == 200) return setInputValid(false)
+
+    dispatch({
+      type: CURRENT_USER,
+      user: {
+        ...response.data.user,
+        loggedIn: true
+      }
+    })
+
+    console.log(state)
 
     // sign in successful, initiate session
     props.updateAuthToken(response.data.token)
