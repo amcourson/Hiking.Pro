@@ -4,7 +4,8 @@ import {
     SET_CURRENT_LOCATION,
     SET_SEARCH_LOCATION,
     CREATE_LOCATION,
-    LOADING
+    LOADING,
+    CURRENT_USER
 } from "./actions";
 
 const StoreContext = createContext();
@@ -40,6 +41,7 @@ const reducer = (state, action) => {
                 locations: [action.location, ...state.locations],
                 loading: false
             };
+        
 
         case LOADING:
             return {
