@@ -79,7 +79,7 @@ module.exports = {
                         (err, token) => {
                             res.status(200).json({
                                 token: token,
-                                user: {email: user.email, id: user._id}
+                                user: {email: user.email, _id: user._id, }
                             });
                         }
                     );

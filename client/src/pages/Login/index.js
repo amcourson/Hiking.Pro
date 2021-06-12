@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import './LoginPage.css'
+import { useStoreContext } from "../../utils/GlobalState";
 let axios = require('axios').default
 
 export default function Login(props) {
+  const [state, dispatch] = useStoreContext();
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
@@ -32,6 +35,12 @@ export default function Login(props) {
       console.error(err)
       setInputValid(false)
       setInputValidMessage(response.message)
+      dispatch({
+        type: CURRENT_USER,
+        user: {
+          ...
+        }
+      })
     }
     if (typeof response == 'undefined') return console.log('no response received')
     if (!response.status == 200) return setInputValid(false)

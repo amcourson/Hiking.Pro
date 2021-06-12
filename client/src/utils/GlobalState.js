@@ -4,8 +4,8 @@ import {
     SET_CURRENT_LOCATION,
     SET_SEARCH_LOCATION,
     CREATE_LOCATION,
-    LOADING,
-    CURRENT_USER
+    CURRENT_USER,
+    LOADING
 } from "./actions";
 
 const StoreContext = createContext();
@@ -28,6 +28,13 @@ const reducer = (state, action) => {
               loading: false
             };
 
+        case CURRENT_USER:
+            return {
+                ...state,
+                currentUser: action.user,
+                loading: false
+            };
+
         case GET_LOCATIONS:
             return {
                 ...state,
@@ -41,7 +48,6 @@ const reducer = (state, action) => {
                 locations: [action.location, ...state.locations],
                 loading: false
             };
-        
 
         case LOADING:
             return {
@@ -77,10 +83,12 @@ const StoreProvider = ({ value = [], ...props }) => {
             region: ""
         },
         currentUser: {
-            _id: 0,
+            _id: "60aff67a5b812814d839698b",
+            email: "",
             location: "",
             completedHikes: [],
-            points: 0
+            points: 0,
+            loggedIn: false
         },
         loading: false
     });
