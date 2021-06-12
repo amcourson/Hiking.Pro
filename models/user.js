@@ -8,7 +8,7 @@ const userSchema = new Schema({
   email: { type: String, required: [true, "Can't be blank"] },
   password: {type: String, required: [true, "Can't be blank"] },
   location: {type: citySchema  },
-  completedHikes: [],
+  completedHikes: {type: Array},
   points: {type: Number, default: 0},
 });
 

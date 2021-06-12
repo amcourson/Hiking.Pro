@@ -94,7 +94,8 @@ module.exports = {
                                     _id: user._id,
                                     email: user.email,
                                     location: user.location,
-                                    points: user.points
+                                    points: user.points,
+                                    completetedHikes: []
                                 }
                             });
                         }
