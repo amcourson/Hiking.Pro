@@ -32,7 +32,7 @@ module.exports = {
       city: req.params.city.split("-").join(" "),
       difficulty: difficultySwitch(req.params.difficulty)
     })
-      .sort({ city: 1 })
+      .sort({ area: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
