@@ -28,11 +28,6 @@ module.exports= {
         return {erros: true, isValid: true}
         let errors = {};
       // Convert empty fields to an empty string so we can use validator functions
-<<<<<<< HEAD
-=======
-        
-      name = !isEmpty(username) ? username : "";
->>>>>>> f1a929cbf161f2f9a8d32956bcf25826c638d504
         email = !isEmpty(email) ? email : "";
         password = !isEmpty(password) ? password : "";
         password2 = !isEmpty(password2) ? password2 : "";
