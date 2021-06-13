@@ -11,6 +11,7 @@ export default function Login(props) {
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
   let [inputValidMessage, setInputValidMessage] = useState(null)
+  const [state, dispatch] = useStoreContext();
 
 
 
@@ -18,6 +19,10 @@ export default function Login(props) {
     return (
       email.length > 0 && password.length > 0 && password.length < 16 && email.includes('@')
     )
+  }
+  
+  const goToDashboard = () => {
+    window.location.href = '/dashboard'
   }
 
   async function handleSubmit(event) {
@@ -31,6 +36,13 @@ export default function Login(props) {
           password: password
         }
       })
+      if(response){
+      await dispatch({
+        type: CURRENT_USER,
+        user: response.req.body
+      });
+      await goToDashboard()
+      }
       console.log(response)
     } catch (err) {
       console.error(err)
