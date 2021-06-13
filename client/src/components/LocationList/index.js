@@ -11,14 +11,14 @@ function LocationList() {
 
 
   const getLocations = () => {
-    dispatch({ type: LOADING });
-    API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
-      .then(results => {
-        dispatch({
-          type: GET_LOCATIONS,
-          locations: results.data
-        });
-      })
+    // dispatch({ type: LOADING });
+      API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
+        .then(results => {
+          dispatch({
+            type: GET_LOCATIONS,
+            locations: results.data
+          });
+        })
       .catch(err => console.log(err));
   };
 

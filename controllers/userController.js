@@ -46,11 +46,7 @@ module.exports = {
                                             res.status(200).json({
                                                 token: token,
                                                 user: {
-                                                    _id: user._id,
-                                                    email: user.email,
-                                                    location: user.location,
-                                                    points: user.points,
-                                                    completetedHikes: []
+                                                    _id: user._id
                                                 }
                                             });
                                         }
@@ -92,9 +88,6 @@ module.exports = {
                                 token: token,
                                 user: {
                                     _id: user._id,
-                                    email: user.email,
-                                    location: user.location,
-                                    points: user.points
                                 }
                             });
                         }

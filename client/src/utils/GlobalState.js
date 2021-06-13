@@ -5,7 +5,8 @@ import {
     SET_SEARCH_LOCATION,
     CREATE_LOCATION,
     CURRENT_USER,
-    LOADING
+    LOADING,
+    LOGIN
 } from "./actions";
 
 const StoreContext = createContext();
@@ -13,19 +14,27 @@ const { Provider } = StoreContext;
 
 const reducer = (state, action) => {
     switch (action.type) {
-        
+
         case SET_SEARCH_LOCATION:
             return {
-              ...state,
-              searchLocation: action.region,
-              loading: false
+                ...state,
+                searchLocation: action.region,
+                loading: false
             };
 
         case SET_CURRENT_LOCATION:
             return {
-              ...state,
-              currentLocation: action.location,
-              loading: false
+                ...state,
+                currentLocation: action.location,
+                loading: false
+            };
+
+        case LOGIN:
+            console.log("Action in login CASE", action)
+            return {
+                ...state,
+                loginCred: action.cred,
+                loading: false
             };
 
         case CURRENT_USER:
@@ -82,14 +91,18 @@ const StoreProvider = ({ value = [], ...props }) => {
             city: "",
             region: ""
         },
+        loginCred: {
+            _id: localStorage.getItem("userId"),
+            authToken: "",
+            loggedIn: false
+        },
         currentUser: {
             _id: "",
             email: "",
             location: "",
             completedHikes: [],
             points: 0,
-            loggedIn: false,
-            authToken: ''
+
         },
         loading: false
     });

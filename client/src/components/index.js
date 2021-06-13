@@ -1,4 +1,5 @@
-import Dashboard from './Dashboard'
+
+import Dashboard from '../pages/Dashboard'
 import SearchBar from './SearchBar'
 import List from './List'
 import LocationList from './LocationList'
@@ -11,5 +12,5 @@ export {
     SearchBar,
     LocationList,
     List,
-    NavBar
+    NavBar,
  }

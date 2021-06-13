@@ -5,7 +5,7 @@ import { CURRENT_USER, LOADING } from "../../utils/actions";
 import API from "../../utils/API";
 import logo from "../../logo.png";
 
-function NavBar() {
+function NavBar(props) {
 
     const [state, dispatch] = useStoreContext();
 
@@ -44,11 +44,11 @@ function NavBar() {
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Dashboard</a>
+                        <Link className="nav-link" to="/dashboard">Dashboard</Link>
                         </li>
                         {state.currentUser.loggedIn ? (
                             <li className="nav-item">
-                                <a className="nav-link" href="/logout">Login</a>
+                                <a className="nav-link" href="/logout" onClick={props.logout}>Login</a>
                             </li>
                         ) : (
                             <li className="nav-item">

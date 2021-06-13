@@ -1,13 +1,18 @@
 
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useStoreContext } from "../utils/GlobalState";
-import { SET_CURRENT_LOCATION, LOADING, CURRENT_USER } from "../utils/actions";
-import API from "../utils/API";
-import Map from "../components/maps";
+import { useStoreContext } from "../../utils/GlobalState";
+import { SET_CURRENT_LOCATION, LOADING, CURRENT_USER } from "../../utils/actions";
+import API from "../../utils/API";
+import Map from "../../components/maps";
+import { useState } from 'react'
 
 const LocationDetail = props => {
     const [state, dispatch] = useStoreContext();
+
+    const [hikeState, setHikeStatus] = useState({
+        completed: false
+    });
 
 
     const getLocation = () => {
@@ -25,7 +30,7 @@ const LocationDetail = props => {
     const updateUser = () => {
         dispatch({ type: LOADING });
         API.updateUser(
-            state.currentUser._id,
+            state.loginCred._id,
             {
                 points: state.currentUser.points + 10,
                 completedHikes: [...state.currentUser.completedHikes,
@@ -43,9 +48,13 @@ const LocationDetail = props => {
                     user: results.data
                 });
             })
-            .then(() => {
-                window.location.reload(false)
+
+            .then(()=>{
+                setHikeStatus({
+                    completed: true
+                })
             })
+
             .catch(err => console.log(err));
     };
 
@@ -72,6 +81,8 @@ const LocationDetail = props => {
         getUser();
     }, []);
 
+    useEffect(() => {
+    }, [hikeState]);
 
     return (
         <div className="container">
@@ -89,7 +100,7 @@ const LocationDetail = props => {
                             <li>Descent: {state.currentLocation.descent}</li>
                             <li>Climb: {state.currentLocation.climb}</li>
                         </ul>
-                        {state.currentUser.completedHikes.some(e => e._id === state.currentLocation._id) ? (
+                        {state.currentUser.completedHikes.some(e => e._id === state.currentLocation._id) || hikeState.completed ? (
                             <button
                                 className="btn btn-success mt-3 mb-5"
                                 disabled
@@ -97,16 +108,16 @@ const LocationDetail = props => {
                                 Completed!
                             </button>
                         ) : (
-                            <Link to="" refresh="true">
-                                <button
-                                    className="btn btn-success mt-3 mb-5"
-                                    disabled={state.loading}
-                                    type="submit"
-                                    onClick={handleSubmit}
-                                >
-                                    Complete Hike!
-                                </button>
-                            </Link>
+
+                            <button
+                                className="btn btn-success mt-3 mb-5"
+                                disabled={state.loading}
+                                type="submit"
+                                onClick={handleSubmit}
+                            >
+                                Complete Hike!
+                            </button>
+
                         )}
 
                     </div>

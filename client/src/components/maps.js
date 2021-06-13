@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Trails from '../trails.json';
 
 const filteredTrails = Trails.filter(trail => trail.city === "Belmont");
-console.log(filteredTrails);
+// console.log(filteredTrails);
 const mapStyles = {
     width: '45%',
     height: '50%',
