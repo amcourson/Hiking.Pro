@@ -10,7 +10,7 @@ function LocationList() {
 
 
   const getLocations = () => {
-    dispatch({ type: LOADING });
+    // dispatch({ type: LOADING });
       API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
         .then(results => {
           dispatch({

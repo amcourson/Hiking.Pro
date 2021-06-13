@@ -4,11 +4,14 @@ import Select from 'react-select'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import citiesImport from './us_cities.json'
+import { useStoreContext } from "../../utils/GlobalState";
+import { LOGIN } from '../../utils/actions';
 import './Home.css'
 let axios = require('axios').default
 
 function Home(props) {
     let [citySelectId, setCitySelectId] = useState(null)
+    const [state, dispatch] = useStoreContext();
 
     let cities = []
     citiesImport.map((city, i) => {
@@ -19,23 +22,34 @@ function Home(props) {
     })
 
 
-    let register = () => {
+    async function register() {
         if (
-            !(document.getElementById('email-input').value == '') && 
-            !(document.getElementById('password-input').value == '') && 
+            !(document.getElementById('email-input').value == '') &&
+            !(document.getElementById('password-input').value == '') &&
             (document.getElementById('password-input').value == document.getElementById('password-input-confirm').value) &&
             citySelectId
         ) {
-            axios('/api/users/register', {
-                method: 'post',
-                data: {
-                    email: document.getElementById('email-input').value,
-                    password: document.getElementById('password-input-confirm').value,
-                    cityId: citySelectId
-                }
-            }).then(r => {
-                props.updateAuthToken(r.token)
-            }).catch(e => console.log(e))
+            try {
+                const response = await axios('/api/users/register', {
+                    method: 'post',
+                    data: {
+                        email: document.getElementById('email-input').value,
+                        password: document.getElementById('password-input-confirm').value,
+                        cityId: citySelectId
+                    }
+                })
+                dispatch({
+                    type: LOGIN,
+                    cred: {
+                        ...response.data.user,
+                        loggedIn: true,
+                        authToken: response.data.token
+                    }
+                })
+                props.setLogin(response.data)
+            } catch (err) {
+                console.error(err)
+            }
         }
     }
 

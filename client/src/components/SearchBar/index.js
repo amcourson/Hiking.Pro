@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING } from '../../utils/actions';
-// import API from '../../utils/API';
+import API from '../../utils/API';
 
 function CreateLocationForm() {
   const locationRef = useRef();
@@ -9,17 +9,17 @@ function CreateLocationForm() {
   const cityRef = useRef();
   const [state, dispatch] = useStoreContext();
 
-  // const getLocationByState = (state) => {
-  //   dispatch({ type: LOADING });
-  //   API.getLocationByState(state)
-  //     .then(results => {
-  //       dispatch({
-  //         type: GET_LOCATIONS,
-  //         posts: results.data
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  const getLocationByState = (state) => {
+    // dispatch({ type: LOADING });
+    API.getLocationByState(state)
+      .then(results => {
+        dispatch({
+          type: GET_LOCATIONS,
+          posts: results.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

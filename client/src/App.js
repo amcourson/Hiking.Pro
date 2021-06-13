@@ -1,49 +1,78 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { StoreProvider, useStoreContext } from "./utils/GlobalState";
+import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
 import { NavBar } from './components'
-import { Login, Home } from './pages'
+import { Login, Home, Dashboard, LocationDetail } from './pages'
 import { useState } from 'react'
-import LocationDetail from "./pages/LocationDetail";
-import { StoreProvider } from "./utils/GlobalState";
-import Dashboard from "./pages/dashboard";
 import logo from "./logo.png";
 
 
 
 function App() {
-  let [authToken, updateAuthToken] = useState(false)
+  // let [authToken, updateAuthToken] = useState(false)
 
-// <NavBar />
-return (
-  <Router>
-    <StoreProvider>
-    <NavBar />
-      <Switch>
-        <Route exact path='/'>
-          <Home updateAuthToken={(token) => {
-            localStorage.setItem('authToken', token)
-            updateAuthToken(token)
-            window.location.href = '/dashboard'
-          }} />
-        </Route>
-        <Route exact path='/supersecretroutethisrouteissoooosecretthatyouwouldneverfinditbylookingelephantdidyouseehowelephantisinarandomplacethatmakesnosensethatmakesthisrouteevenhardertofind'>
-          <h1>SECRET</h1>
-        </Route>
-        <Route exact path='/dashboard'>
-          <Dashboard />
-        </Route>
-        <Route exact path='/login'>
-          <Login updateAuthToken={(token) => {
-            localStorage.setItem('authToken', token)
-            updateAuthToken(token)
-            window.location.href = '/dashboard'
-          }} />
-        </Route>
-        <Route exact path="/locations/:id" component={LocationDetail} />
-      </Switch>
-    </StoreProvider>
-  </Router>
-);
+  const [loginState, setLoginCred] = useState({
+    _id: "",
+    authToken: "",
+    loggedIn: false
+
+  });
+  // const [state, dispatch] = useStoreContext();
+  useEffect(() => {
+  }, [loginState.loggedIn]);
+
+
+  // <NavBar />
+  return (
+    <Router>
+      <StoreProvider>
+        <NavBar 
+        logout={()=>{
+          localStorage.clear();
+          window.location.href ="/login"
+        }}
+        />
+        <Switch>
+          <Route exact path='/'>
+            {loginState.loggedIn ? <Redirect to="/dashboard" /> : <Home
+              setLogin={(data) => {
+                localStorage.setItem("authToken", data.token)
+                localStorage.setItem("userId", data.user._id)
+                localStorage.setItem("loggedIn", true)
+                setLoginCred({
+                  _id: data.user._id,
+                  authToken: data.token,
+                  loggedIn: true
+                })
+              }} />}
+    
+          </Route>
+       
+          <Route exact path='/supersecretroutethisrouteissoooosecretthatyouwouldneverfinditbylookingelephantdidyouseehowelephantisinarandomplacethatmakesnosensethatmakesthisrouteevenhardertofind'>
+            <h1>SECRET</h1>
+          </Route>
+          <Route exact path='/dashboard'>
+            {!loginState.loggedIn ? <Redirect to="/login" /> : <Dashboard />}
+          </Route>
+          <Route exact path='/login'>
+            {loginState.loggedIn ? <Redirect to="/dashboard" /> : <Login
+              setLogin={(data) => {
+                localStorage.setItem("authToken", data.token)
+                localStorage.setItem("userId", data.user._id)
+                localStorage.setItem("loggedIn", true)
+                setLoginCred({
+                  _id: data.user._id,
+                  authToken: data.token,
+                  loggedIn: true
+                })
+              }} />}
+          </Route>
+          {/* <Route exact path="/logout"></Route> */}
+          <Route exact path="/locations/:id" component={LocationDetail} />
+        </Switch>
+      </StoreProvider>
+    </Router>
+  );
 }
 
 export default App;
