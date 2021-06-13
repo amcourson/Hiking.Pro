@@ -12,6 +12,7 @@ export default function Login(props) {
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
   let [inputValidMessage, setInputValidMessage] = useState(null)
+  const [state, dispatch] = useStoreContext();
 
 
 
