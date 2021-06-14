@@ -9,8 +9,8 @@ const locationSchema = new Schema({
     descent: {type: String, default: null}, 
     climb: {type: String, default: null}, 
     area: {type: String, default: null}, 
-    latitude: {type: String, default: null}, 
-    longitude: {type: String, default: null}, 
+    latitude: {type: Number, default: null}, 
+    longitude: {type: Number, default: null}, 
     city: {type: String, default: null}, 
     region: {type: String, default: null}, 
     country:  {type: String, default: "US"}
