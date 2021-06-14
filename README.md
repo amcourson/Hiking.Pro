@@ -26,9 +26,10 @@ ALlowing for the users to Login and create an account. Once this is created we w
 
 ## Wireframe	
 Posted to our google drive folder. (https://docs.google.com/document/d/1s3HMpvj_rpdKepcegrq-_qZhhuMTNu1fhUqsPtlfNlY/edit?usp=sharing)
+This link is sharable to all. 
 ## Demo
 		
-*Hiking.Pro* is deployed to Heroku. Please check it out [here]().
+*Hiking.Pro* is deployed to Heroku. Please check it out [here](https://fathomless-sands-64382.herokuapp.com/).
 
 - What is the direct link to the project?	Quick start options:
   * The code is hosted here: [Hiking.Pro](https://github.com/amcourson/Hiking.Pro).
