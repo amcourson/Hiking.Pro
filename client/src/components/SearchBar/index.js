@@ -55,6 +55,7 @@ function CreateLocationForm() {
               ref={cityRef}
               id="city"
               placeholder="City"
+              required
             />
           </div>
           <div className="col-auto">
