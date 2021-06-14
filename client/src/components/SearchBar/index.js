@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING } from '../../utils/actions';
-// import API from '../../utils/API';
+import API from '../../utils/API';
 
 function CreateLocationForm() {
   const locationRef = useRef();
@@ -9,17 +9,17 @@ function CreateLocationForm() {
   const cityRef = useRef();
   const [state, dispatch] = useStoreContext();
 
-  // const getLocationByState = (state) => {
-  //   dispatch({ type: LOADING });
-  //   API.getLocationByState(state)
-  //     .then(results => {
-  //       dispatch({
-  //         type: GET_LOCATIONS,
-  //         posts: results.data
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
+  const getLocationByState = (state) => {
+    // dispatch({ type: LOADING });
+    API.getLocationByState(state)
+      .then(results => {
+        dispatch({
+          type: GET_LOCATIONS,
+          posts: results.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,14 +44,14 @@ function CreateLocationForm() {
   };
 
   return (
-    <div>
+    <div className="text-center d-grid gap-2">
       <h1>Filter your Results</h1>
-      <form className="form-group mt-0 mb-0" onSubmit={handleSubmit}>
+      <form className="form-group mx-auto" onSubmit={handleSubmit}>
         <div className="row mb-2">
           <div className="col-auto">
             <label htmlFor="city" className="form-label">City</label>
             <input
-              className="form-control"
+              className="form-control mx-auto"
               ref={cityRef}
               id="city"
               placeholder="City"
@@ -61,7 +61,7 @@ function CreateLocationForm() {
             {/* Dropdown menu for states */}
             <label htmlFor="location" className="form-label">State</label>
             <select
-              className="form-select"
+              className="form-select mx-auto"
               id="location"
               name="location"
               ref={locationRef}
@@ -123,7 +123,7 @@ function CreateLocationForm() {
           <div className="col-auto">
             <label htmlFor="difficulty" className="form-label">Difficulty</label>
             <select
-              className="form-select"
+              className="form-select mx-auto"
               id="difficulty"
               name="difficulty"
               ref={difficultyRef}
@@ -137,7 +137,7 @@ function CreateLocationForm() {
 
             </select>
           </div>
-          <div className="col-auto">
+          <div className="col-auto mx-auto">
             <br></br>
             <button
               className="btn btn-success mt-2"

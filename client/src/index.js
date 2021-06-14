@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import "bootswatch/dist/darkly/bootstrap.min.css";
-import './index.css'
+import './bootstrap.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,3 +9,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
+  

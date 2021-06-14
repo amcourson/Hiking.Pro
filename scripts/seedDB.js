@@ -5,11 +5,10 @@ const cities = require("./citiestest.json");
 
 // This file empties the Posts collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hikingpro");
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://hikepro:XL1AFPcoUseM0GzR@cluster0.jjevb.mongodb.net/hikepro?retryWrites=true&w=majority");
 
 const userSeed = [
   {
-    username: "TheRock",
     email: "rock@therock.com",
     password: "password123",
     location: "Dallas",
@@ -17,7 +16,6 @@ const userSeed = [
     points: 40
   },
   {
-    username: "SteveBuscemi",
     email: "steve@buscemi.com",
     password: "password123",
     location: "Chicago",
@@ -25,7 +23,6 @@ const userSeed = [
     points: 0
   },
   {
-    username: "Yoda",
     email: "yoda@theforce.com",
     password: "123password",
     location: "Austin",
@@ -41,7 +38,7 @@ const citySeed = cities
 
 
 db.User.remove({}) && db.Location.remove({})
-  .then(() => db.User.collection.insertMany(userSeed)) && db.Location.collection.insertMany(locationSeed) && db.Cities.collection.insertMany(citySeed)
+  .then(() => db.User.collection.insertMany(userSeed)) &&  db.Cities.collection.insertMany(citySeed) && db.Location.collection.insertMany(locationSeed)
     .then(data => {
       console.log(data.result.n + " records inserted!");
       process.exit(0);

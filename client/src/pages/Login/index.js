@@ -1,13 +1,19 @@
-import React, { useState } from 'react'
-import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Form, Button, Container } from 'react-bootstrap'
 import './LoginPage.css'
+import { useStoreContext } from "../../utils/GlobalState";
+import { LOGIN } from '../../utils/actions';
+import { Link } from "react-router-dom";
 let axios = require('axios').default
+// import API from "../../utils/API";
 
-export default function LoginPage(props) {
+export default function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   let [inputValid, setInputValid] = useState(true)
   let [inputValidMessage, setInputValidMessage] = useState(null)
+  const [state, dispatch] = useStoreContext();
+
 
 
   function validateForm() {
@@ -15,29 +21,41 @@ export default function LoginPage(props) {
       email.length > 0 && password.length > 0 && password.length < 16 && email.includes('@')
     )
   }
+  // if(state.currentUser.loggedIn) {
+  //   props.setAuthToken("")
+  // }
 
   async function handleSubmit(event) {
     event.preventDefault()
-    let response
+   
     try {
-      response = await axios('/api/users/login', {
+     const response = await axios('/api/users/login', {
         method: 'post',
         data: {
           email: email,
           password: password
         }
       })
-      console.log(response)
+      console.log("response user ID login page ", response.data)
+      if (typeof response == 'undefined') return console.log('no response received')
+      if (!response.status == 200) return setInputValid(false)
+      dispatch({
+        type: LOGIN,
+        cred: {
+          ...response.data.user,
+          loggedIn: true,
+          authToken: response.data.token
+        }
+      })
+
+      console.log("login cred on login page ", state.loginCred)
+      props.setLogin(response.data)
+      
     } catch (err) {
       console.error(err)
       setInputValid(false)
-      setInputValidMessage(response.message)
+      //setInputValidMessage(err)
     }
-    if (typeof response == 'undefined') return console.log('no response received')
-    if (!response.status == 200) return setInputValid(false)
-
-    // sign in successful, initiate session
-    props.updateAuthToken(response.data.token)
   }
 
   return (

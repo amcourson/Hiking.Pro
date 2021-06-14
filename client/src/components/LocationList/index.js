@@ -4,13 +4,14 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { GET_LOCATIONS, LOADING } from "../../utils/actions";
 import API from "../../utils/API";
 import { ListItem, List } from "../List";
+import LazyLoad from 'react-lazy-load';
 
 function LocationList() {
   const [state, dispatch] = useStoreContext();
 
 
   const getLocations = () => {
-    dispatch({ type: LOADING });
+    // dispatch({ type: LOADING });
       API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
         .then(results => {
           dispatch({
@@ -28,17 +29,17 @@ function LocationList() {
 
   return (
     <div>
-      <h4 className="mb-2 mt-0">Explore New Trails</h4>
+      <h4 className="mb-2 mt-0 text-center">Explore New Trails in {state.searchLocation.city}</h4>
       {state.locations.length ? (
         <List>
           {state.locations.map(location => (
-            <ListItem key={location._id}>
-              <Link to={"/locations/" + location._id}>
-                <strong>
-                  {location.name} in {location.city}
-                </strong>
-              </Link>
-            </ListItem>
+            <LazyLoad offsetVertical={300}>
+              <ListItem key={location._id}>
+                <Link to={"/locations/" + location._id}>
+                  {location.area}: <strong>{location.name}</strong>
+                </Link>
+              </ListItem>
+            </LazyLoad>
           ))}
         </List>
       ) : (
