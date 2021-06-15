@@ -79,7 +79,7 @@ const LocationDetail = props => {
     useEffect(() => {
         getUser();
         getLocation();
-    }, [state.currentLocation]);
+    }, []);
 
     useEffect(() => {
     }, [hikeState]);
