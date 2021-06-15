@@ -16,7 +16,7 @@ const LocationDetail = props => {
     
     
     const getLocation = () => {
-        // dispatch({ type: LOADING });
+        dispatch({ type: LOADING });
         API.getLocation(props.match.params.id)
         .then(results => {
             dispatch({
@@ -28,7 +28,7 @@ const LocationDetail = props => {
     };
     
     const getUser = () => {
-        // dispatch({ type: LOADING });
+        dispatch({ type: LOADING });
     
         API.getUser(state.loginCred._id)
             .then(results => {
@@ -40,7 +40,7 @@ const LocationDetail = props => {
             .catch(err => console.log(err));
     };
     const updateUser = () => {
-        // dispatch({ type: LOADING });
+        dispatch({ type: LOADING });
         API.updateUser(
             state.loginCred._id,
             {
@@ -77,8 +77,8 @@ const LocationDetail = props => {
     };
 
     useEffect(() => {
-        getUser();
         getLocation();
+        getUser();
     }, []);
 
     useEffect(() => {
