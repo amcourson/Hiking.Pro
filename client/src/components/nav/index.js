@@ -39,9 +39,10 @@ function NavBar(props) {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarColor02">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a className="nav-link active" href="#">Home
+                            {/* <a className="nav-link active" href="#">Home */}
+                            <Link className="nav-link active" to="/"> Home</Link>
+
                                 <span className="visually-hidden">(current)</span>
-                            </a>
                         </li>
                         <li className="nav-item">
                         <Link className="nav-link" to="/dashboard">Dashboard</Link>
