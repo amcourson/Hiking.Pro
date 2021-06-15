@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-ro
 import { NavBar } from './components'
 import { Login, Home, Dashboard, LocationDetail } from './pages'
 import { useState } from 'react'
-import logo from "./logo.png";
 
 
 
