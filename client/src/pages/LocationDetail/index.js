@@ -9,26 +9,38 @@ import { useState } from 'react'
 
 const LocationDetail = props => {
     const [state, dispatch] = useStoreContext();
-
+    
     const [hikeState, setHikeStatus] = useState({
         completed: false
     });
-
-
+    
+    
     const getLocation = () => {
-        dispatch({ type: LOADING });
+        // dispatch({ type: LOADING });
         API.getLocation(props.match.params.id)
+        .then(results => {
+            dispatch({
+                type: SET_CURRENT_LOCATION,
+                location: results.data
+            });
+        })
+        .catch(err => console.log(err));
+    };
+    
+    const getUser = () => {
+        // dispatch({ type: LOADING });
+    
+        API.getUser(state.loginCred._id)
             .then(results => {
                 dispatch({
-                    type: SET_CURRENT_LOCATION,
-                    location: results.data
+                    type: CURRENT_USER,
+                    user: results.data
                 });
             })
             .catch(err => console.log(err));
     };
-
     const updateUser = () => {
-        dispatch({ type: LOADING });
+        // dispatch({ type: LOADING });
         API.updateUser(
             state.loginCred._id,
             {
@@ -58,18 +70,6 @@ const LocationDetail = props => {
             .catch(err => console.log(err));
     };
 
-    const getUser = () => {
-        dispatch({ type: LOADING });
-
-        API.getUser(state.currentUser._id)
-            .then(results => {
-                dispatch({
-                    type: CURRENT_USER,
-                    user: results.data
-                });
-            })
-            .catch(err => console.log(err));
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -77,9 +77,9 @@ const LocationDetail = props => {
     };
 
     useEffect(() => {
-        getLocation();
         getUser();
-    }, []);
+        getLocation();
+    }, [state.currentLocation]);
 
     useEffect(() => {
     }, [hikeState]);

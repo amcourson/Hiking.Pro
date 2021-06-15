@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
 import { CURRENT_USER, LOADING } from "../../utils/actions";
 import API from "../../utils/API";
-import logo from "../../logo.png";
+import logo from "../../logoblack.png";
+import "./style.css";
 
 function NavBar(props) {
 

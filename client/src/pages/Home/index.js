@@ -67,7 +67,6 @@ function Home(props) {
         <Container>
             <Row className='justify-content-center'>
                 <header>
-                    <img src='logo.png'></img>
                     <h1>Welcome to Hiking.Pro</h1>
                 </header>
                 <main>
