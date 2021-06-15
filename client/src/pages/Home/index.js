@@ -67,28 +67,37 @@ function Home(props) {
         <Container>
             <Row className='justify-content-center'>
                 <header>
-                    <img src='logo.png'></img>
                     <h1>Welcome to Hiking.Pro</h1>
                 </header>
-                <main>
-                    <div className='text-center'>
+            </Row>
+            <Row className='justify-content-center'>
+                <Col className="col-6 justify-content-center">
+
+                    <h3><label htmlFor='city-input' className="form-label">Choose a location</label></h3>
+                    <div className='city-input'>
                         <Select
                             onChange={(selected) => setCitySelectId(selected.value)}
                             options={cities.slice(0, 10)}
                         />
                     </div>
-                    <Link to='/login'>Already have an account? Click here to log in</Link>
+
                     <div className='dropdown'></div>
-                    <div>
-                        <form>
-                            <h3>Finish your registration</h3>
-                            <label htmlFor='email-input'>Enter your email</label> <input id='email-input' name='email-input' type='email'></input>
-                            <label htmlFor='password-input'>Enter a password</label> <input id='password-input' name='password-input' type='password'></input>
-                            <label htmlFor='password-input-confirm'>Confirm password</label> <input id='password-input-confirm'></input>
-                            <Button onClick={register} variant='primary'>Register</Button>
-                        </form>
-                    </div>
-                </main>
+
+                </Col>
+                <Col className="col-6">
+                    <main>
+                        <div>
+                            <form className="form-group mx-auto">
+                                <h3>Register your Account</h3>
+                                <label htmlFor='email-input' className="form-label">Enter your email</label> <input className="form-control mx-auto" id='email-input' name='email-input' type='email'></input>
+                                <label htmlFor='password-input' className="form-label">Enter a password</label> <input className="form-control mx-auto" id='password-input' name='password-input' type='password'></input>
+                                <label htmlFor='password-input-confirm' className="form-label">Confirm password</label> <input className="form-control mx-auto" id='password-input-confirm' name='password-input-confirm' type='password'></input>
+                                <Button onClick={register} variant='primary'>Register</Button>
+                            </form>
+                        </div>
+                        <Link to='/login'>Already have an account? Click here to log in</Link>
+                    </main>
+                </Col>
             </Row>
         </Container>
     )
