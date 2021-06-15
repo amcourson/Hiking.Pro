@@ -111,7 +111,7 @@ const LocationDetail = props => {
 
                             <button
                                 className="btn btn-success mt-3 mb-5"
-                                disabled={state.loading}
+                                // disabled={state.loading}
                                 type="submit"
                                 onClick={handleSubmit}
                             >

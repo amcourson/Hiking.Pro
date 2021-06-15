@@ -12,9 +12,9 @@ function NavBar(props) {
 
 
     const getUser = () => {
-        dispatch({ type: LOADING });
-        console.log(state.currentUser.loggedIn)
-        API.getUser(state.currentUser._id)
+        // dispatch({ type: LOADING });
+        console.log(state.loginCred.loggedIn)
+        API.getUser(state.loginCred._id)
             .then(results => {
                 dispatch({
                     type: CURRENT_USER,
@@ -32,7 +32,7 @@ function NavBar(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#"><img className="logo" src={logo} /></a>
+                <Link className="navbar-brand" to="/"><img className="logo" src={logo} /></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -48,13 +48,13 @@ function NavBar(props) {
                         <li className="nav-item">
                         <Link className="nav-link" to="/dashboard">Dashboard</Link>
                         </li>
-                        {state.currentUser.loggedIn ? (
+                        {state.loginCred.loggedIn ? (
                             <li className="nav-item">
-                                <a className="nav-link" href="/logout" onClick={props.logout}>Login</a>
+                                <a className="nav-link" href="#" onClick={props.logout}>Logout</a>
                             </li>
                         ) : (
                             <li className="nav-item">
-                                <a className="nav-link" href="/login">Logout</a>
+                                <a className="nav-link" href="/login">Login</a>
                             </li>
                         )}
 

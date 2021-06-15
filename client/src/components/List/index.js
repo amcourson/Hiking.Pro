@@ -6,7 +6,7 @@ import "./style.css";
 function List({ children }) {
   return (
     <div id="wrapper">
-      <div class="scrollbar" id="style-15">
+      <div className="scrollbar" id="style-15">
         <div className="force-overflow" style={{ maxHeight: "40vh" }}>
           <ul className="list-group">{children}</ul>
         </div>

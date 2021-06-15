@@ -12,7 +12,7 @@ function UserInfo() {
   const getUser = () => {
     // dispatch({ type: LOADING });
     console.log("login cred on dashboard: ", state.loginCred)
-    API.getUser(localStorage.getItem("userId"))
+    API.getUser(state.loginCred._id)
       .then(results => {
         dispatch({
           type: CURRENT_USER,

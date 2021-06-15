@@ -13,12 +13,12 @@ function App() {
   const [loginState, setLoginCred] = useState({
     _id: "",
     authToken: "",
-    loggedIn: false
+    loggedIn: localStorage.getItem("loggedIn")
 
   });
   // const [state, dispatch] = useStoreContext();
   useEffect(() => {
-  }, [loginState.loggedIn]);
+  }, [loginState.authToken]);
 
 
   // <NavBar />
