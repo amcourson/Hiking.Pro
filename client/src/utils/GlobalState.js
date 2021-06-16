@@ -74,9 +74,9 @@ const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         locations: [],
         searchLocation: {
-            region: "TX",
-            city: "Austin",
-            difficulty: "Intermediate"
+            region: null,
+            city: null,
+            difficulty: null
         },
         currentLocation: {
             _id: 0,
@@ -94,12 +94,12 @@ const StoreProvider = ({ value = [], ...props }) => {
         loginCred: {
             _id: localStorage.getItem("userId"),
             authToken: "",
-            loggedIn: false
+            loggedIn: localStorage.getItem("loggedIn")
         },
         currentUser: {
             _id: "",
             email: "",
-            location: "",
+            location: {},
             completedHikes: [],
             points: 0,
 

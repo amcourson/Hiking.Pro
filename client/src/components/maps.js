@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import Trails from '../trails.json';
+// import Trails from '../trails.json';
 
-const filteredTrails = Trails.filter(trail => trail.city === "Belmont");
+// const filteredTrails = Trails.filter(trail => trail.city === "Belmont");
 // console.log(filteredTrails);
 const mapStyles = {
     width: '45%',
@@ -83,7 +83,7 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBsSWVbZ3NKrsQoaWpdj3exjjGOwpCKmQg'
+    apiKey: process.env.REACT_APP_API_KEY_GOOGLE_MAPS
 })(MapContainer);
 // render ()
 //     return (
