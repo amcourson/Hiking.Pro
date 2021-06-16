@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const locationController = require("../../controllers/locationController");
 
+
+router.route('/radius').get(locationController.findInRadius)
+
 // Matches with "/api/location"
 router
   .route("/")

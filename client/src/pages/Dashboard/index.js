@@ -8,11 +8,13 @@ import { CURRENT_USER, LOADING } from "../../utils/actions";
 
 
 const Dashboard = () => {
-// console.log(userId)
-const [state, dispatch] = useStoreContext();
-useEffect(() => {
-    console.log("Dashboard state", state)
-  }, []);
+    // console.log(userId)
+    const [state, dispatch] = useStoreContext();
+
+    useEffect(() => {
+        console.log("Dashboard state", state)
+    }, []);
+    
     return (
         <div>
             <div className="container">
@@ -24,7 +26,7 @@ useEffect(() => {
                     <div className="col-1"></div>
                 </div>
                 <div className="row">
-                    <div className="col-md-6">
+                        <div className="col-md-6">
                         <UserInfo 
                         // userId={userId}
                         />

@@ -15,8 +15,7 @@ export default function Login(props) {
   const [state, dispatch] = useStoreContext();
 
 
-
-  function validateForm() {
+  function validateForm() {  
     return (
       email.length > 0 && password.length > 0 && password.length < 16 && email.includes('@')
     )
@@ -27,7 +26,6 @@ export default function Login(props) {
 
   async function handleSubmit(event) {
     event.preventDefault()
-   
     try {
      const response = await axios('/api/users/login', {
         method: 'post',

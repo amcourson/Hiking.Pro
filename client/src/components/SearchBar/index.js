@@ -1,12 +1,13 @@
 import React, { useRef } from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING } from '../../utils/actions';
+import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING, SET_NEARBY_SEARCH_RADIUS } from '../../utils/actions';
 import API from '../../utils/API';
 
 function CreateLocationForm() {
   const locationRef = useRef();
   const difficultyRef = useRef();
   const cityRef = useRef();
+  const radiusRef = useRef()
   const [state, dispatch] = useStoreContext();
 
   const getLocationByState = (state) => {
@@ -147,6 +148,30 @@ function CreateLocationForm() {
             >
               Search
           </button>
+          </div>
+        </div>
+      </form>
+      <form className="form-group mx-auto" onSubmit={(e) => {
+        e.preventDefault()
+        if (!parseFloat(document.getElementById('radius').value)) return window.alert('Enter a number for the search radius.')
+        dispatch({
+          type: SET_NEARBY_SEARCH_RADIUS,
+          nearbySearchRadius: parseFloat(document.getElementById('radius').value)
+        })
+      }}>
+        <div className='row mb-2'>
+          <div className='col-auto'>
+          <label htmlFor="radius" className="form-label">Search radius</label>
+          <input
+              className="form-control mx-auto"
+              ref={radiusRef}
+              id="radius"
+              placeholder="Search Radius"
+              required
+            />
+          </div>
+          <div className='col-auto'>
+            <button className="btn btn-success mt-2" type="submit">Find nearby trails</button>
           </div>
         </div>
       </form>

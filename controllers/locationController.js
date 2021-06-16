@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models")
 
 // Defining methods for the postsController
 module.exports = {
@@ -6,26 +6,26 @@ module.exports = {
     db.Location.find(req.query)
       .sort({ name: 1 })
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).json(err))
   },
   findByState: function (req, res) {
     // switches difficulty level for the query
     const difficultySwitch = (diff) => {
       switch (diff) {
         case "ExtremelyDifficult":
-          return "Extremely Difficult / Dbl Black Diamond";
+          return "Extremely Difficult / Dbl Black Diamond"
         case "VeryDifficult":
-          return "Very Difficult / Black Diamond";
+          return "Very Difficult / Black Diamond"
         case "Intermediate":
-          return "Intermediate / Blue Square";
+          return "Intermediate / Blue Square"
         case "Easy":
-          return "Easy / Green Circle";
+          return "Easy / Green Circle"
         case "Easiest":
-          return "Easiest / White Circle";
+          return "Easiest / White Circle"
         default:
-          return "Intermediate / Blue Square";
+          return "Intermediate / Blue Square"
       } 
-    };
+    }
 
     db.Location.find({
       region: req.params.region,
@@ -34,16 +34,34 @@ module.exports = {
     })
       .sort({ area: 1 })
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).json(err))
   },
   findById: function (req, res) {
     db.Location.findById(req.params.id)
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).json(err))
   },
   create: function (req, res) {
     db.Location.create(req.body)
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => res.status(422).json(err))
+  },
+  findInRadius: (req, res) => {
+    if (!(req.query.radius && req.query.lat && req.query.lon)) {
+      return res.end()
+    }
+    let { degreesToMiles } = require('../utils')
+    let radius = parseFloat(req.query.radius),
+        lat = parseFloat(req.query.lat),
+        lon = parseFloat(req.query.lon)
+    let r = require('../scripts/trailsnew.json')
+    let returnTrails = []
+    for (let trail of r) {
+      if (!(parseFloat(trail.latidude)))
+      if (degreesToMiles(lat, lon, trail.latitude, trail.longitude) <= radius) {
+        returnTrails.push(trail)
+      }
+    }
+    return res.status(200).json(returnTrails)
   }
-};
+}
