@@ -34,6 +34,6 @@ export default {
   updateUser: function(id, userData) {
 
     return axios.put("/api/users/"+id, userData)
-  }
-
+  },
+  getLocationsWithinRadius: async (radius, lat, lon) => axios.get(`/api/locations/radius?radius=${radius}&lat=${lat}&lon=${lon}`)
 };

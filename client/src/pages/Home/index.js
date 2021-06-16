@@ -73,11 +73,11 @@ function Home(props) {
             <Row className='justify-content-center'>
                 <Col className="col-6 justify-content-center">
 
-                    <h3><label htmlFor='city-input' className="form-label">Choose a location</label></h3>
+                    <h3><label htmlFor='city-input' className="form-label">Choose your city</label></h3>
                     <div className='city-input'>
                         <Select
                             onChange={(selected) => setCitySelectId(selected.value)}
-                            options={cities.slice(0, 10)}
+                            options={cities}
                         />
                     </div>
 

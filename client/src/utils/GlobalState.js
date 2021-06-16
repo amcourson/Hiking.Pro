@@ -6,7 +6,8 @@ import {
     CREATE_LOCATION,
     CURRENT_USER,
     LOADING,
-    LOGIN
+    LOGIN,
+    SET_NEARBY_SEARCH_RADIUS
 } from "./actions";
 
 const StoreContext = createContext();
@@ -63,7 +64,12 @@ const reducer = (state, action) => {
                 ...state,
                 loading: true
             };
-
+        
+        case SET_NEARBY_SEARCH_RADIUS:
+            return {
+                ...state,
+                nearbySearchRadius: action.nearbySearchRadius
+            }
 
         default:
             return state;
@@ -104,6 +110,7 @@ const StoreProvider = ({ value = [], ...props }) => {
             points: 0,
 
         },
+        nearbySearchRadius: null,
         loading: false
     });
 

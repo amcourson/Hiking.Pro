@@ -59,6 +59,21 @@ module.exports= {
 
       withAuth: (req, res, next) => {
         
-      }
+      },
+
+      degreesToMiles: (lat1, lon1, lat2, lon2) => {
+        let R = 63713000
+        let phi1 = lat1 * Math.PI/180
+        let phi2 = lat2 * Math.PI/180
+        let deltaphi = (lat2 - lat1) * Math.PI/180
+        let deltalambda = (lon2 - lon1) * Math.PI/180
+
+        let a = Math.sin(deltaphi / 2) * Math.sin(deltaphi / 2) +
+                Math.cos(phi1) * Math.cos(phi2) *
+                Math.sin(deltalambda / 2) * Math.sin(deltalambda / 2)
+        let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+
+       return R * c / 16090
+    }
 
 }

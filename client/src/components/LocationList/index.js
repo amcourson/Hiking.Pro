@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useStoreContext } from "../../utils/GlobalState";
-import { GET_LOCATIONS, LOADING } from "../../utils/actions";
-import API from "../../utils/API";
-import { ListItem, List } from "../List";
+import React, { useEffect } from "react"
+import { Link } from "react-router-dom"
+import { useStoreContext } from "../../utils/GlobalState"
+import { GET_LOCATIONS, LOADING } from "../../utils/actions"
+import API from "../../utils/API"
+import { ListItem, List } from "../List"
+let axios = require('axios').default
 // import LazyLoad from 'react-lazy-load';
 
 function LocationList() {
   const [state, dispatch] = useStoreContext();
-
 
   const getLocations = () => {
     // dispatch({ type: LOADING });
@@ -22,10 +22,25 @@ function LocationList() {
       .catch(err => console.log(err));
   };
 
-  useEffect(() => {
-    getLocations();
-  }, [state.searchLocation]);
+  const getNearbyLocations = () => {
+    if (!(typeof state.nearbySearchRadius == 'number') || !(state.currentUser.location.coord)) return
+    API.getLocationsWithinRadius(state.nearbySearchRadius, state.currentUser.location.coord.lat, state.currentUser.location.coord.lon).then(r => {
+      dispatch({
+        type: GET_LOCATIONS,
+        locations: r.data
+      })
+    }).catch(e => {
+      console.error(e)
+    })
+  }
 
+  useEffect(() => {
+    getLocations()
+  }, [state.searchLocation]
+  )
+  useEffect(() => {
+    getNearbyLocations()
+  }, [state.nearbySearchRadius])
 
   return (
     <div>
@@ -48,7 +63,7 @@ function LocationList() {
         <h3>There are no locations to display!</h3>
       )}
     </div>
-  );
+  )
 }
 
-export default LocationList;
+export default LocationList
