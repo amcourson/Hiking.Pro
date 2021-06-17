@@ -9,7 +9,7 @@ import { ListItem, List } from "../List";
 function LocationList() {
   const [state, dispatch] = useStoreContext();
 
-
+//Will display locations based on what is currently in the search location state in the global state manager.
   const getLocations = () => {
     // dispatch({ type: LOADING });
     API.getLocationByState(state.searchLocation.region, state.searchLocation.city, state.searchLocation.difficulty)
@@ -21,12 +21,12 @@ function LocationList() {
       })
       .catch(err => console.log(err));
   };
-
+  //Will update the locations displayed when the search location is updated in the global state. Would also like to have this display the users current location on load in future development.
   useEffect(() => {
     getLocations();
   }, [state.searchLocation]);
 
-
+// Going to display locations if search locations currently exists. Lazy load was throwing up too many warnings as is, will use it in future development.
   return (
     <div>
       {state.locations.length ? (

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
-import { SET_SEARCH_LOCATION, GET_LOCATIONS, LOADING } from '../../utils/actions';
-import API from '../../utils/API';
+import { SET_SEARCH_LOCATION} from '../../utils/actions';
+
 
 function CreateLocationForm() {
   const locationRef = useRef();
@@ -9,25 +9,14 @@ function CreateLocationForm() {
   const cityRef = useRef();
   const [state, dispatch] = useStoreContext();
 
-  const getLocationByState = (state) => {
-    // dispatch({ type: LOADING });
-    API.getLocationByState(state)
-      .then(results => {
-        dispatch({
-          type: GET_LOCATIONS,
-          posts: results.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
+  //Allows the user to set global state (Search location) for CITY, STATE, and DIFFICULTY when they click search
   const handleSubmit = (e) => {
     e.preventDefault();
-    //going to turn the abbreviation to uppercase
-
+    //This is going to capitalize the first letter of each word in the query.
     const cityConversion = (city) => {
       return city.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join('-');
     }
+    //going to turn the abbreviation to uppercase
     const stateAbbreviation = locationRef.current.value.toUpperCase()
     //This is going to push the location to the global state currently should be in state abbreviation format
     dispatch({
@@ -42,7 +31,7 @@ function CreateLocationForm() {
     // locationRef.current.value = '';
     // difficultyRef.current.value = '';
   };
-
+  // Allows user to search by CITY, STATE, and DIFFICULTY. User must enter all three. Wan't to make this more configurable in future development.
   return (
     <div className="text-center d-grid gap-2">
       <h1>Filter your Results</h1>

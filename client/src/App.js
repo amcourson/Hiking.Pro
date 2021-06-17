@@ -9,7 +9,7 @@ import { useState } from 'react'
 
 function App() {
   // let [authToken, updateAuthToken] = useState(false)
-
+  //Going to store auth data and login data on initial login.
   const [loginState, setLoginCred] = useState({
     _id: "",
     authToken: "",

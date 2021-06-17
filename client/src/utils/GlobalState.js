@@ -12,6 +12,8 @@ import {
 const StoreContext = createContext();
 const { Provider } = StoreContext;
 
+
+//This is the reducer create location and loading will be used in future development.
 const reducer = (state, action) => {
     switch (action.type) {
 
@@ -30,7 +32,6 @@ const reducer = (state, action) => {
             };
 
         case LOGIN:
-            console.log("Action in login CASE", action)
             return {
                 ...state,
                 loginCred: action.cred,
@@ -70,6 +71,7 @@ const reducer = (state, action) => {
     }
 };
 
+//This storeProvider provides 6 stores for the developer to use all are in current use except for loading.
 const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
         locations: [],
@@ -110,8 +112,10 @@ const StoreProvider = ({ value = [], ...props }) => {
     return <Provider value={[state, dispatch]} {...props} />;
 };
 
+//Will allow user to pull store context in other components or pages.
 const useStoreContext = () => {
     return useContext(StoreContext);
 };
 
+//Pull store provider into app and useStoreContext into any page you would like to use the global state manager.
 export { StoreProvider, useStoreContext };
