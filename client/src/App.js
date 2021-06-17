@@ -16,7 +16,7 @@ function App() {
     loggedIn: localStorage.getItem("loggedIn")
 
   });
-  // const [state, dispatch] = useStoreContext();
+
   useEffect(() => {
   }, [loginState.authToken]);
 

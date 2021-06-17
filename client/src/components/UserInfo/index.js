@@ -11,7 +11,7 @@ function UserInfo() {
   //Going to get user data and display the completed hikes on the page
   const getUser = () => {
     // dispatch({ type: LOADING });
-    console.log("login cred on dashboard: ", state.loginCred)
+    
     API.getUser(state.loginCred._id)
       .then(results => {
         dispatch({

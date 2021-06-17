@@ -12,12 +12,14 @@ function CreateLocationForm() {
   //Allows the user to set global state (Search location) for CITY, STATE, and DIFFICULTY when they click search
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     //This is going to capitalize the first letter of each word in the query.
     const cityConversion = (city) => {
       return city.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join('-');
     }
     //going to turn the abbreviation to uppercase
     const stateAbbreviation = locationRef.current.value.toUpperCase()
+
     //This is going to push the location to the global state currently should be in state abbreviation format
     dispatch({
       type: SET_SEARCH_LOCATION,
