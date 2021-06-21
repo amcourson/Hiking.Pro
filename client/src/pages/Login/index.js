@@ -36,7 +36,7 @@ export default function Login(props) {
           password: password
         }
       })
-      console.log("response user ID login page ", response.data)
+
       if (typeof response == 'undefined') return console.log('no response received')
       if (!response.status == 200) return setInputValid(false)
       dispatch({
@@ -48,7 +48,7 @@ export default function Login(props) {
         }
       })
 
-      console.log("login cred on login page ", state.loginCred)
+      
       props.setLogin(response.data)
       
     } catch (err) {

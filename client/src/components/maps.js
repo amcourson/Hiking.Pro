@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 // import Trails from '../trails.json';
 
@@ -32,7 +32,6 @@ export class MapContainer extends Component {
             });
         }
     };
-
 
     render() {
         return (

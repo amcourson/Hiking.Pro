@@ -8,10 +8,10 @@ import { ListItem, List } from "../List";
 function UserInfo() {
   const [state, dispatch] = useStoreContext();
 
-  
+  //Going to get user data and display the completed hikes on the page
   const getUser = () => {
     // dispatch({ type: LOADING });
-    console.log("login cred on dashboard: ", state.loginCred)
+    
     API.getUser(state.loginCred._id)
       .then(results => {
         dispatch({
@@ -23,23 +23,24 @@ function UserInfo() {
       .catch(err => console.log(err));
   };
 
+  //Going to update component when it gets the user information
   useEffect(() => {
     getUser();
   }, []);
 
 
 
-
+//This should return no hikes if a new account and should tell the user the number of hikes they have completed if they have completed hikes.
   return (
     <div>
-      {state.currentUser.completedHikes ? (
-        <h4 className="">Congrats, you have completed Hikes!</h4>
+      {state.currentUser.completedHikes.length ? (
+        <h4 className="text-center">Congrats, you have {state.currentUser.completedHikes.length} completed Hikes!</h4>
       ) : (
-        <h4 className="">Oh No!{state.currentUser.email} You have no completed hikes</h4>
+        <h4 className="text-center">Oh No! You have no completed hikes</h4>
 
         
       )}
-      {state.currentUser.completedHikes ? (
+      {state.currentUser.completedHikes.length ? (
         <List>
           {state.currentUser.completedHikes.map(location => (
             <ListItem key={location._id}>
